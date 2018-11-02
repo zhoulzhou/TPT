@@ -10,7 +10,7 @@
         android:id="@+id/pressure_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         android:text="2.7 Bar"/>
 
     <ImageView
@@ -24,7 +24,7 @@
         android:id="@+id/temperature_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         android:text="24 C"/>
 
 </LinearLayout>
