@@ -29,15 +29,17 @@ public class TirePressureDetectionModel implements ITirePressureDetectionModel {
         switch (whichTire) {
             case TireUtils.TIRE_FL:
                 pressure = generateRandomNumber();
+                LogUtils.d("getTirePressureFromDB pressure FL= " + pressure);
                 break;
             case TireUtils.TIRE_FR:
-                pressure = generateIncreaseNumber();
+                f = pressure = generateIncreaseNumber();
+                LogUtils.d("getTirePressureFromDB pressure FR= " + pressure);
                 break;
             case TireUtils.TIRE_BL:
                 pressure = generateRandomNumber();
                 break;
             case TireUtils.TIRE_BR:
-                pressure = generateIncreaseNumber();
+                pressure = generateRandomNumber();
                 break;
             default:
                 pressure = -1;
@@ -52,16 +54,18 @@ public class TirePressureDetectionModel implements ITirePressureDetectionModel {
         switch (whichTire) {
             case TireUtils.TIRE_FL:
                 temperature = generateRandomNumber() * 10;
+                LogUtils.d("getTireTemperatureFromDB temperature FL= " + temperature);
                 break;
             case TireUtils.TIRE_FR:
-                temperature = generateIncreaseNumber() * 10;
-                LogUtils.d("temperature= " + temperature);
+//                temperature = generateIncreaseNumber() * 10;
+                temperature = f * 10;
+                LogUtils.d("getTireTemperatureFromDB temperature FR= " + temperature);
                 break;
             case TireUtils.TIRE_BL:
                 temperature = generateRandomNumber() * 10;
                 break;
             case TireUtils.TIRE_BR:
-                temperature = generateIncreaseNumber() * 10;
+                temperature = generateRandomNumber() * 10;
                 break;
             default:
                 temperature = -1;
@@ -74,13 +78,14 @@ public class TirePressureDetectionModel implements ITirePressureDetectionModel {
         float min = 1f;
         float max = 10f;
         float random = min + new Random().nextFloat() * (max - min);
+        LogUtils.d("generateRandomNumber random= " + random);
         return random;
     }
 
     private float f= 0;
     private float generateIncreaseNumber(){
         if(f <= 10){
-            ++f;
+            f += 1;
         }else {
             f = 0;
         }

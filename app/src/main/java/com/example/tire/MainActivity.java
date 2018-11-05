@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import com.example.tire.common.LogUtils;
 import com.example.tire.model.TirePressureDetectionModel;
 import com.example.tire.presenter.ITirePressureDetectionPresenter;
 import com.example.tire.presenter.TirePressureDetectionPresenter;
@@ -48,11 +49,12 @@ public class MainActivity extends AppCompatActivity implements ITirePressureDete
 
     @Override
     public void showTirePressureFR(float pressure, float temperature) {
+        LogUtils.d("showTirePressureFR pressure= " + pressure);
         mTirePressureFRText.setValue(pressure,temperature);
         if(isDangerous(pressure,temperature)){
             mTirePressureFR.setImageResource(R.color.red);
         }else{
-            mTirePressureFL.setImageResource(R.color.blue);
+            mTirePressureFR.setImageResource(R.color.blue);
         }
     }
 
@@ -62,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements ITirePressureDete
         if(isDangerous(pressure,temperature)){
             mTirePressureBL.setImageResource(R.color.red);
         }else{
-            mTirePressureFL.setImageResource(R.color.blue);
+            mTirePressureBL.setImageResource(R.color.blue);
         }
     }
 
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements ITirePressureDete
         if(isDangerous(pressure,temperature)){
             mTirePressureBR.setImageResource(R.color.red);
         }else{
-            mTirePressureFL.setImageResource(R.color.blue);
+            mTirePressureBR.setImageResource(R.color.blue);
         }
     }
 

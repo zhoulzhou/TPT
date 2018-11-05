@@ -1,14 +1,13 @@
 package com.example.tire.presenter;
 
 import android.os.Handler;
-import android.util.Log;
 
+import com.example.tire.common.LogUtils;
 import com.example.tire.common.TireUtils;
 import com.example.tire.model.ITirePressureDetectionModel;
 import com.example.tire.view.ITirePressureDetectionView;
 
 public class TirePressureDetectionPresenter implements ITirePressureDetectionPresenter {
-    private static final String TAG = "TirePressureDetectionPresenter";
     private ITirePressureDetectionView mTirePressureDetectionView;
     private ITirePressureDetectionModel mTirePressureDetectionModel;
     private Handler mHandler = new Handler();
@@ -54,6 +53,8 @@ public class TirePressureDetectionPresenter implements ITirePressureDetectionPre
             @Override
             public void run() {
                 //应该Model层去获取数据，然后callback回调到presenter层
+//                LogUtils.d("startTireDetection thread " + mHandler.getLooper().toString());
+                LogUtils.d("postDelayed Runnable run");
                 if(isViewAttached()){
                     mTirePressureDetectionView.showTirePressureFL(getTirePressure(TireUtils.TIRE_FL),
                             getTireTemperature(TireUtils.TIRE_FL));
@@ -64,8 +65,7 @@ public class TirePressureDetectionPresenter implements ITirePressureDetectionPre
                     mTirePressureDetectionView.showTirePressureBR(getTirePressure(TireUtils.TIRE_BR),
                             getTireTemperature(TireUtils.TIRE_BR));
                 }
-                Log.d(TAG,"startTireDetection thread " + mHandler.getLooper().toString());
-                mHandler.postDelayed(this,1000);
+                mHandler.postDelayed(this,10000);
             }
         }, 1000);
     }
