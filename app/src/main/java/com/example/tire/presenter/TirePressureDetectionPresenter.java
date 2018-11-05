@@ -32,7 +32,7 @@ public class TirePressureDetectionPresenter implements ITirePressureDetectionPre
     }
 
     @Override
-    public void attatchView(ITirePressureDetectionView view) {
+    public void attachView(ITirePressureDetectionView view) {
         mTirePressureDetectionView = view;
     }
 

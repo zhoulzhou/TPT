@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements ITirePressureDete
         mTirePressureBR = (ImageView) findViewById(R.id.tire_br);
 
         mTirePressureDetectionPresenter = new TirePressureDetectionPresenter(TirePressureDetectionModel.getInstance());
-        mTirePressureDetectionPresenter.attatchView(this);
+        mTirePressureDetectionPresenter.attachView(this);
         mTirePressureDetectionPresenter.startTireDetection();
     }
 

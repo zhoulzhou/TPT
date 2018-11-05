@@ -6,7 +6,7 @@ public interface ITirePressureDetectionPresenter {
     float getTirePressure(int whichTire);
     float getTireTemperature(int whichTire);
 
-    void attatchView(ITirePressureDetectionView view);
+    void attachView(ITirePressureDetectionView view);
     void detachView();
     boolean isViewAttached();
 
