@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TirePressureDetection</string>
+    <string name="car_bg_text">car_backgroud</string>
 </resources>
