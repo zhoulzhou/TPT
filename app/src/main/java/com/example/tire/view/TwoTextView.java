@@ -21,12 +21,12 @@ public class TwoTextView extends LinearLayout{
 
         View view = LayoutInflater.from(context).inflate(R.layout.two_text_view_layout,this);
         mPressureText = view.findViewById(R.id.pressure_text);
-        mTemperatureText = view.findViewById(R.id.pressure_text);
+        mTemperatureText = view.findViewById(R.id.temperature_text);
     }
 
-    public void setValue(float[] values){
+    public void setValue(float pressure, float temperature){
         DecimalFormat df = new DecimalFormat(".0");
-        mPressureText.setText(df.format(values[0]) + " Bar");
-        mTemperatureText.setText(values[1] + " C");
+        mPressureText.setText(df.format(pressure) + " Bar");
+        mTemperatureText.setText(temperature + " C");
     }
 }

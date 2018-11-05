@@ -57,7 +57,7 @@
         android:id="@+id/tire_fl"
         android:layout_width="30dp"
         android:layout_height="60dp"
-        android:background="@color/blue"
+        android:src="@color/blue"
         android:layout_marginTop="10dp"
         app:layout_constraintRight_toLeftOf="@+id/car_bg"
         app:layout_constraintTop_toTopOf="@+id/car_bg"
@@ -67,7 +67,7 @@
         android:id="@+id/tire_fr"
         android:layout_width="30dp"
         android:layout_height="60dp"
-        android:background="@color/blue"
+        android:src="@color/blue"
         android:layout_marginTop="10dp"
         app:layout_constraintLeft_toRightOf="@id/car_bg"
         app:layout_constraintTop_toTopOf="@id/car_bg"/>
@@ -76,15 +76,16 @@
         android:id="@+id/tire_bl"
         android:layout_width="30dp"
         android:layout_height="60dp"
-        android:background="@color/blue"
+        android:src="@color/blue"
         android:layout_marginBottom="10dp"
         app:layout_constraintRight_toLeftOf="@id/car_bg"
         app:layout_constraintBottom_toBottomOf="@id/car_bg"/>
 
     <ImageView
+        android:id="@+id/tire_br"
         android:layout_width="30dp"
         android:layout_height="60dp"
-        android:background="@color/blue"
+        android:src="@color/blue"
         android:layout_marginBottom="10dp"
         app:layout_constraintLeft_toRightOf="@id/car_bg"
         app:layout_constraintBottom_toBottomOf="@id/car_bg"/>
