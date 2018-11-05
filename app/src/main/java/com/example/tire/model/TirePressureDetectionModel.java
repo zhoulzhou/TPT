@@ -82,7 +82,7 @@ public class TirePressureDetectionModel implements ITirePressureDetectionModel {
         return random;
     }
 
-    private float f= 0;
+    private float f= 1;
     private float generateIncreaseNumber(){
         if(f <= 10){
             f += 1;

@@ -65,7 +65,7 @@ public class TirePressureDetectionPresenter implements ITirePressureDetectionPre
                     mTirePressureDetectionView.showTirePressureBR(getTirePressure(TireUtils.TIRE_BR),
                             getTireTemperature(TireUtils.TIRE_BR));
                 }
-                mHandler.postDelayed(this,10000);
+                mHandler.postDelayed(this,1000);
             }
         }, 1000);
     }
