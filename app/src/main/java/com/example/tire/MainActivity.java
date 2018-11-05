@@ -39,33 +39,45 @@ public class MainActivity extends AppCompatActivity implements ITirePressureDete
     @Override
     public void showTirePressureFL(float pressure, float temperature) {
         mTirePressureFLText.setValue(pressure,temperature);
-        if(pressure <3 || pressure >6){
+        if(isDangerous(pressure,temperature)){
             mTirePressureFL.setImageResource(R.color.red);
+        }else{
+            mTirePressureFL.setImageResource(R.color.blue);
         }
     }
 
     @Override
     public void showTirePressureFR(float pressure, float temperature) {
         mTirePressureFRText.setValue(pressure,temperature);
-        if(pressure <3 || pressure >6){
+        if(isDangerous(pressure,temperature)){
             mTirePressureFR.setImageResource(R.color.red);
+        }else{
+            mTirePressureFL.setImageResource(R.color.blue);
         }
     }
 
     @Override
     public void showTirePressureBL(float pressure, float temperature) {
         mTirePressureBLText.setValue(pressure,temperature);
-        if(pressure <3 || pressure >6){
+        if(isDangerous(pressure,temperature)){
             mTirePressureBL.setImageResource(R.color.red);
+        }else{
+            mTirePressureFL.setImageResource(R.color.blue);
         }
     }
 
     @Override
     public void showTirePressureBR(float pressure, float temperature) {
         mTirePressureBRText.setValue(pressure,temperature);
-        if(pressure <3 || pressure >6){
+        if(isDangerous(pressure,temperature)){
             mTirePressureBR.setImageResource(R.color.red);
+        }else{
+            mTirePressureFL.setImageResource(R.color.blue);
         }
+    }
+
+    private boolean isDangerous(float pressure, float temperature){
+        return pressure < 2 || pressure > 8 || temperature < 20 || temperature > 80;
     }
 
     @Override

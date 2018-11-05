@@ -1,12 +1,14 @@
 package com.example.tire.presenter;
 
 import android.os.Handler;
+import android.util.Log;
 
 import com.example.tire.common.TireUtils;
 import com.example.tire.model.ITirePressureDetectionModel;
 import com.example.tire.view.ITirePressureDetectionView;
 
 public class TirePressureDetectionPresenter implements ITirePressureDetectionPresenter {
+    private static final String TAG = "TirePressureDetectionPresenter";
     private ITirePressureDetectionView mTirePressureDetectionView;
     private ITirePressureDetectionModel mTirePressureDetectionModel;
     private Handler mHandler = new Handler();
@@ -62,7 +64,8 @@ public class TirePressureDetectionPresenter implements ITirePressureDetectionPre
                     mTirePressureDetectionView.showTirePressureBR(getTirePressure(TireUtils.TIRE_BR),
                             getTireTemperature(TireUtils.TIRE_BR));
                 }
-
+                Log.d(TAG,"startTireDetection thread " + mHandler.getLooper().toString());
+                mHandler.postDelayed(this,1000);
             }
         }, 1000);
     }

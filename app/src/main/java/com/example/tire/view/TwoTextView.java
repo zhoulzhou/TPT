@@ -25,8 +25,12 @@ public class TwoTextView extends LinearLayout{
     }
 
     public void setValue(float pressure, float temperature){
+        mPressureText.setText( format(pressure)+ " Bar");
+        mTemperatureText.setText(format(temperature) + " °C");
+    }
+
+    private String format(float f){
         DecimalFormat df = new DecimalFormat(".0");
-        mPressureText.setText(df.format(pressure) + " Bar");
-        mTemperatureText.setText(temperature + " C");
+        return df.format(f);
     }
 }
