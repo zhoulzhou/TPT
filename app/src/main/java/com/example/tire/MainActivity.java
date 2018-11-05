@@ -4,6 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import com.example.tire.model.TirePressureDetectionModel;
+import com.example.tire.presenter.ITirePressureDetectionPresenter;
+import com.example.tire.presenter.TirePressureDetectionPresenter;
 import com.example.tire.view.ITirePressureDetectionView;
 import com.example.tire.view.TwoTextView;
 
@@ -12,6 +15,7 @@ public class MainActivity extends AppCompatActivity implements ITirePressureDete
     private TwoTextView mTirePressureBLText, mTirePressureBRText;
     private ImageView mTirePressureFL, mTirePressureFR;
     private ImageView mTirePressureBL, mTirePressureBR;
+    private ITirePressureDetectionPresenter mTirePressureDetectionPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,10 @@ public class MainActivity extends AppCompatActivity implements ITirePressureDete
         mTirePressureFR = (ImageView) findViewById(R.id.tire_fr);
         mTirePressureBL = (ImageView) findViewById(R.id.tire_bl);
         mTirePressureBR = (ImageView) findViewById(R.id.tire_br);
+
+        mTirePressureDetectionPresenter = new TirePressureDetectionPresenter(TirePressureDetectionModel.getInstance());
+        mTirePressureDetectionPresenter.attatchView(this);
+        mTirePressureDetectionPresenter.startTireDetection();
     }
 
     @Override
@@ -58,5 +66,12 @@ public class MainActivity extends AppCompatActivity implements ITirePressureDete
         if(pressure <3 || pressure >6){
             mTirePressureBR.setImageResource(R.color.red);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mTirePressureDetectionPresenter.detachView();
+        mTirePressureDetectionPresenter.stopTireDetection();
     }
 }

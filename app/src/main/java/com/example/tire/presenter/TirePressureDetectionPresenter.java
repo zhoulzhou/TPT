@@ -11,19 +11,39 @@ public class TirePressureDetectionPresenter implements ITirePressureDetectionPre
     private ITirePressureDetectionModel mTirePressureDetectionModel;
     private Handler mHandler = new Handler();
 
-    public TirePressureDetectionPresenter(ITirePressureDetectionView view, ITirePressureDetectionModel model){
-        mTirePressureDetectionView = view;
+    public TirePressureDetectionPresenter(ITirePressureDetectionModel model){
         mTirePressureDetectionModel = model;
     }
 
     @Override
     public float getTirePressure(int whichTire) {
+        if(mTirePressureDetectionModel == null){
+            return 0;
+        }
         return mTirePressureDetectionModel.getTirePressureFromDB(whichTire);
     }
 
     @Override
     public float getTireTemperature(int whichTire) {
+        if(mTirePressureDetectionModel == null){
+            return 0;
+        }
         return mTirePressureDetectionModel.getTireTemperatureFromDB(whichTire);
+    }
+
+    @Override
+    public void attatchView(ITirePressureDetectionView view) {
+        mTirePressureDetectionView = view;
+    }
+
+    @Override
+    public void detachView() {
+        mTirePressureDetectionView = null;
+    }
+
+    @Override
+    public boolean isViewAttached() {
+        return mTirePressureDetectionView != null;
     }
 
     @Override
@@ -31,15 +51,18 @@ public class TirePressureDetectionPresenter implements ITirePressureDetectionPre
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                //应该Model层去获取数据，回调到presenter层
-                mTirePressureDetectionView.showTirePressureFL(getTirePressure(TireUtils.TIRE_FL),
-                        getTireTemperature(TireUtils.TIRE_FL));
-                mTirePressureDetectionView.showTirePressureFR(getTirePressure(TireUtils.TIRE_FR),
-                        getTireTemperature(TireUtils.TIRE_FR));
-                mTirePressureDetectionView.showTirePressureBL(getTirePressure(TireUtils.TIRE_BL),
-                        getTireTemperature(TireUtils.TIRE_BL));
-                mTirePressureDetectionView.showTirePressureBR(getTirePressure(TireUtils.TIRE_BR),
-                        getTireTemperature(TireUtils.TIRE_BR));
+                //应该Model层去获取数据，然后callback回调到presenter层
+                if(isViewAttached()){
+                    mTirePressureDetectionView.showTirePressureFL(getTirePressure(TireUtils.TIRE_FL),
+                            getTireTemperature(TireUtils.TIRE_FL));
+                    mTirePressureDetectionView.showTirePressureFR(getTirePressure(TireUtils.TIRE_FR),
+                            getTireTemperature(TireUtils.TIRE_FR));
+                    mTirePressureDetectionView.showTirePressureBL(getTirePressure(TireUtils.TIRE_BL),
+                            getTireTemperature(TireUtils.TIRE_BL));
+                    mTirePressureDetectionView.showTirePressureBR(getTirePressure(TireUtils.TIRE_BR),
+                            getTireTemperature(TireUtils.TIRE_BR));
+                }
+
             }
         }, 1000);
     }
