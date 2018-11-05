@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements ITirePressureDete
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mTirePressureDetectionPresenter.detachView();
         mTirePressureDetectionPresenter.stopTireDetection();
+        mTirePressureDetectionPresenter.detachView();
     }
 }
