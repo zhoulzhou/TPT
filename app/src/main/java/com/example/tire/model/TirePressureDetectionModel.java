@@ -77,9 +77,8 @@ public class TirePressureDetectionModel implements ITirePressureDetectionModel {
     float min = 1f;
     float max = 10f;
     private float generateRandomNumber(){
-        float random = min + new Random().nextFloat() * (max - min);
+        return min + new Random().nextFloat() * (max - min);
 //        LogUtils.d("generateRandomNumber random= " + random);
-        return random;
     }
 
     private float f= 1;

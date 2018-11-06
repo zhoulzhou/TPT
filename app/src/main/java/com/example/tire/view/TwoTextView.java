@@ -1,5 +1,6 @@
 package com.example.tire.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -24,9 +25,12 @@ public class TwoTextView extends LinearLayout{
         mTemperatureText = view.findViewById(R.id.temperature_text);
     }
 
+    @SuppressLint("StringFormatInvalid")
     public void setValue(float pressure, float temperature){
-        mPressureText.setText( format(pressure)+ " Bar");
-        mTemperatureText.setText(format(temperature) + " °C");
+//        mPressureText.setText( format(pressure)+ " Bar");
+//        mTemperatureText.setText(format(temperature) + " °C");
+        mPressureText.setText(getResources().getString(R.string.pressure_text,pressure));
+        mTemperatureText.setText(getResources().getString(R.string.temperature_text,temperature));
     }
 
     DecimalFormat df = new DecimalFormat(".0");
