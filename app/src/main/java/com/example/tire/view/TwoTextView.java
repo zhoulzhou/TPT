@@ -24,16 +24,9 @@ public class TwoTextView extends LinearLayout{
         mTemperatureText = view.findViewById(R.id.temperature_text);
     }
 
-    StringBuffer pressureSB = new StringBuffer();
-    StringBuffer temperatureSB = new StringBuffer();
     public void setValue(float pressure, float temperature){
-        pressureSB.append(format(pressure));
-        pressureSB.append(" Bar");
-        mPressureText.setText(pressureSB);
-
-        temperatureSB.append(format(temperature));
-        temperatureSB.append(" °C");
-        mTemperatureText.setText(temperatureSB);
+        mPressureText.setText( format(pressure)+ " Bar");
+        mTemperatureText.setText(format(temperature) + " °C");
     }
 
     DecimalFormat df = new DecimalFormat(".0");
