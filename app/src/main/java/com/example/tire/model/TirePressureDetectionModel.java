@@ -74,11 +74,11 @@ public class TirePressureDetectionModel implements ITirePressureDetectionModel {
         return temperature;
     }
 
+    float min = 1f;
+    float max = 10f;
     private float generateRandomNumber(){
-        float min = 1f;
-        float max = 10f;
         float random = min + new Random().nextFloat() * (max - min);
-        LogUtils.d("generateRandomNumber random= " + random);
+//        LogUtils.d("generateRandomNumber random= " + random);
         return random;
     }
 
@@ -89,7 +89,7 @@ public class TirePressureDetectionModel implements ITirePressureDetectionModel {
         }else {
             f = 0;
         }
-        LogUtils.d("f3= " + f);
+//        LogUtils.d("f3= " + f);
         return f;
     }
 }

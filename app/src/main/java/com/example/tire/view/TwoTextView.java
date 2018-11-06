@@ -29,8 +29,8 @@ public class TwoTextView extends LinearLayout{
         mTemperatureText.setText(format(temperature) + " °C");
     }
 
+    DecimalFormat df = new DecimalFormat(".0");
     private String format(float f){
-        DecimalFormat df = new DecimalFormat(".0");
         return df.format(f);
     }
 }
