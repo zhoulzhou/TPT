@@ -24,7 +24,7 @@ public class TwoTextView extends LinearLayout{
     public TwoTextView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
-        View view = LayoutInflater.from(context).inflate(R.layout.two_text_view_layout,this);
+        View view = LayoutInflater.from(context).inflate(R.layout.two_text_view_layout,this,true);
         mPressureText = (TextView) view.findViewById(R.id.pressure_text);
         mTemperatureText = (TextView) view.findViewById(R.id.temperature_text);
     }
