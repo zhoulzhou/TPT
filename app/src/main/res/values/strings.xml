@@ -1,6 +1,5 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">TirePressureDetection</string>
-    <string name="car_bg_text">car_backgroud</string>
     <string name="pressure_text"><xliff:g id="pressure" >%1$.1f</xliff:g> Bar</string>
     <string name="temperature_text"><xliff:g id="temperature" >%1$.1f</xliff:g> °C</string>
 </resources>
