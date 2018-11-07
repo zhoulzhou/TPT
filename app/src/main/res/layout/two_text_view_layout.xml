@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_gravity="center_horizontal">
+    android:layout_gravity="center">
 
     <TextView
         android:id="@+id/pressure_text"
@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:src="@drawable/car_maintenance_divide_eco"/>
+        android:background="@drawable/car_maintenance_divide_eco"/>
 
     <TextView
         android:id="@+id/temperature_text"
