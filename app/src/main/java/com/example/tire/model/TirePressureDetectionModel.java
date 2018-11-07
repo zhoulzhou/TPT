@@ -29,7 +29,7 @@ public class TirePressureDetectionModel implements ITirePressureDetectionModel {
         switch (whichTire) {
             case TireUtils.TIRE_FL:
                 pressure = generateRandomNumber();
-                LogUtils.d("getTirePressureFromDB pressure FL= " + pressure);
+//                LogUtils.d("getTirePressureFromDB pressure FL= " + pressure);
                 break;
             case TireUtils.TIRE_FR:
                 f = pressure = generateIncreaseNumber();
@@ -54,7 +54,7 @@ public class TirePressureDetectionModel implements ITirePressureDetectionModel {
         switch (whichTire) {
             case TireUtils.TIRE_FL:
                 temperature = generateRandomNumber() * 10;
-                LogUtils.d("getTireTemperatureFromDB temperature FL= " + temperature);
+//                LogUtils.d("getTireTemperatureFromDB temperature FL= " + temperature);
                 break;
             case TireUtils.TIRE_FR:
 //                temperature = generateIncreaseNumber() * 10;
@@ -78,7 +78,6 @@ public class TirePressureDetectionModel implements ITirePressureDetectionModel {
     float max = 10f;
     private float generateRandomNumber(){
         return min + new Random().nextFloat() * (max - min);
-//        LogUtils.d("generateRandomNumber random= " + random);
     }
 
     private float f= 1;

@@ -49,13 +49,6 @@ public class TirePressureDetectionFragment extends Fragment implements ITirePres
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        LogUtils.d("onStart");
-        mTirePressureDetectionPresenter.startTireDetection();
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
         LogUtils.d("onResume");
@@ -81,7 +74,7 @@ public class TirePressureDetectionFragment extends Fragment implements ITirePres
 
     @Override
     public void showTirePressureFR(float pressure, float temperature) {
-        LogUtils.d("showTirePressureFR pressure= " + pressure);
+        LogUtils.d("====showTirePressureFR pressure= " + pressure + " temperature= " + temperature);
         mTirePressureFRText.setValue(pressure,temperature);
         if(isDangerous(pressure,temperature)){
             mTirePressureFR.setImageResource(R.color.red);
