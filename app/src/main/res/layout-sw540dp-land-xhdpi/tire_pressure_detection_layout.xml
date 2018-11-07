@@ -21,6 +21,8 @@
         android:id="@+id/tire_fl_text"
         android:layout_width="90dp"
         android:layout_height="60dp"
+        android:orientation="vertical"
+        android:gravity="center"
         app:layout_constraintTop_toTopOf="@id/tire_fl"
         app:layout_constraintBottom_toBottomOf="@id/tire_fl"
         app:layout_constraintRight_toLeftOf="@id/tire_fl"
