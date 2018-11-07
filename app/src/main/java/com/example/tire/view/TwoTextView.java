@@ -17,6 +17,10 @@ public class TwoTextView extends LinearLayout{
     private TextView mPressureText;
     private TextView mTemperatureText;
 
+    public TwoTextView(Context context){
+        this(context,null);
+    }
+
     public TwoTextView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
