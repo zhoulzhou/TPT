@@ -8,4 +8,23 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="tire_two_text_view">
+        <item name="android:layout_width">90dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="tire_image">
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">150dp</item>
+        <item name="android:src">@color/blue</item>
+    </style>
+
+    <style name="tire_image_land">
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">105dp</item>
+        <item name="android:src">@color/blue</item>
+    </style>
+
 </resources>

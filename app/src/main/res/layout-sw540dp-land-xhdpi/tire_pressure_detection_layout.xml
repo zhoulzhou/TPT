@@ -19,10 +19,7 @@
 
     <com.example.tire.view.TwoTextView
         android:id="@+id/tire_fl_text"
-        android:layout_width="90dp"
-        android:layout_height="60dp"
-        android:orientation="vertical"
-        android:gravity="center"
+        style="@style/tire_two_text_view"
         app:layout_constraintTop_toTopOf="@id/tire_fl"
         app:layout_constraintBottom_toBottomOf="@id/tire_fl"
         app:layout_constraintRight_toLeftOf="@id/tire_fl"
@@ -30,8 +27,7 @@
 
     <com.example.tire.view.TwoTextView
         android:id="@+id/tire_fr_text"
-        android:layout_width="90dp"
-        android:layout_height="60dp"
+        style="@style/tire_two_text_view"
         app:layout_constraintTop_toTopOf="@id/tire_fr"
         app:layout_constraintBottom_toBottomOf="@id/tire_fr"
         app:layout_constraintLeft_toRightOf="@id/tire_fr"
@@ -39,8 +35,7 @@
 
     <com.example.tire.view.TwoTextView
         android:id="@+id/tire_bl_text"
-        android:layout_width="90dp"
-        android:layout_height="60dp"
+        style="@style/tire_two_text_view"
         app:layout_constraintTop_toTopOf="@id/tire_bl"
         app:layout_constraintBottom_toBottomOf="@id/tire_bl"
         app:layout_constraintRight_toLeftOf="@id/tire_bl"
@@ -49,8 +44,7 @@
 
     <com.example.tire.view.TwoTextView
         android:id="@+id/tire_br_text"
-        android:layout_width="90dp"
-        android:layout_height="60dp"
+        style="@style/tire_two_text_view"
         app:layout_constraintTop_toTopOf="@id/tire_br"
         app:layout_constraintBottom_toBottomOf="@id/tire_br"
         app:layout_constraintLeft_toRightOf="@id/tire_br"
@@ -58,9 +52,7 @@
 
     <ImageView
         android:id="@+id/tire_fl"
-        android:layout_width="60dp"
-        android:layout_height="105dp"
-        android:src="@color/blue"
+        style="@style/tire_image_land"
         android:layout_marginTop="10dp"
         app:layout_constraintRight_toLeftOf="@+id/car_bg"
         app:layout_constraintTop_toTopOf="@+id/car_bg"
@@ -68,27 +60,21 @@
 
     <ImageView
         android:id="@+id/tire_fr"
-        android:layout_width="60dp"
-        android:layout_height="105dp"
-        android:src="@color/blue"
+        style="@style/tire_image_land"
         android:layout_marginTop="10dp"
         app:layout_constraintLeft_toRightOf="@id/car_bg"
         app:layout_constraintTop_toTopOf="@id/car_bg"/>
 
     <ImageView
         android:id="@+id/tire_bl"
-        android:layout_width="60dp"
-        android:layout_height="105dp"
-        android:src="@color/blue"
+        style="@style/tire_image_land"
         android:layout_marginBottom="10dp"
         app:layout_constraintRight_toLeftOf="@id/car_bg"
         app:layout_constraintBottom_toBottomOf="@id/car_bg"/>
 
     <ImageView
         android:id="@+id/tire_br"
-        android:layout_width="60dp"
-        android:layout_height="105dp"
-        android:src="@color/blue"
+        style="@style/tire_image_land"
         android:layout_marginBottom="10dp"
         app:layout_constraintLeft_toRightOf="@id/car_bg"
         app:layout_constraintBottom_toBottomOf="@id/car_bg"/>
