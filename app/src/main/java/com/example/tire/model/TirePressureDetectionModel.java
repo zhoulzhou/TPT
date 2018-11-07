@@ -88,7 +88,7 @@ public class TirePressureDetectionModel implements ITirePressureDetectionModel {
         }else {
             f = 0;
         }
-//        LogUtils.d("f3= " + f);
+        LogUtils.d("f3= " + f);
         return f;
     }
 }
