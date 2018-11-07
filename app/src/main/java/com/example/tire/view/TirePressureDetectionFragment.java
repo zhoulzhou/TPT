@@ -23,11 +23,6 @@ public class TirePressureDetectionFragment extends Fragment implements ITirePres
     private ImageView mTirePressureBL, mTirePressureBR;
     private ITirePressureDetectionPresenter mTirePressureDetectionPresenter;
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,9 +38,35 @@ public class TirePressureDetectionFragment extends Fragment implements ITirePres
 
         mTirePressureDetectionPresenter = new TirePressureDetectionPresenter(TirePressureDetectionModel.getInstance());
         mTirePressureDetectionPresenter.attachView(this);
-        mTirePressureDetectionPresenter.startTireDetection();
-
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        LogUtils.d("onDestroyView");
+        mTirePressureDetectionPresenter.detachView();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        LogUtils.d("onStart");
+        mTirePressureDetectionPresenter.startTireDetection();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        LogUtils.d("onResume");
+        mTirePressureDetectionPresenter.startTireDetection();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        LogUtils.d("onPause");
+        mTirePressureDetectionPresenter.stopTireDetection();
     }
 
     @Override
@@ -97,6 +118,5 @@ public class TirePressureDetectionFragment extends Fragment implements ITirePres
     public void onDestroy() {
         super.onDestroy();
         mTirePressureDetectionPresenter.stopTireDetection();
-        mTirePressureDetectionPresenter.detachView();
     }
 }
