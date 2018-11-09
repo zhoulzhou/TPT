@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-import com.example.tire.database.TireTableOperator;
-
 public class DataService extends Service {
     private UpdateDataThread updateDataThread;
 

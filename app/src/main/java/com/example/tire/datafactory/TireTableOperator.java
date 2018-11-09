@@ -1,10 +1,12 @@
-package com.example.tire.database;
+package com.example.tire.datafactory;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+
+import com.example.tire.database.TireTable;
 
 public class TireTableOperator {
     private static Context mContext;

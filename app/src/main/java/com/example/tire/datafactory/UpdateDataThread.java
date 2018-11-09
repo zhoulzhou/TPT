@@ -1,7 +1,5 @@
 package com.example.tire.datafactory;
 
-import com.example.tire.database.TireTableOperator;
-
 public class UpdateDataThread extends Thread {
     private boolean isStop = true;
 
