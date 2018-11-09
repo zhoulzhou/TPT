@@ -36,7 +36,7 @@ public class TirePressureDetectionFragment extends Fragment implements ITirePres
         mTirePressureBL = (ImageView) view.findViewById(R.id.tire_bl);
         mTirePressureBR = (ImageView) view.findViewById(R.id.tire_br);
 
-        mTirePressureDetectionPresenter = new TirePressureDetectionPresenter(TirePressureDetectionModel.getInstance());
+        mTirePressureDetectionPresenter = new TirePressureDetectionPresenter(TirePressureDetectionModel.getInstance(getContext()));
         mTirePressureDetectionPresenter.attachView(this);
         return view;
     }

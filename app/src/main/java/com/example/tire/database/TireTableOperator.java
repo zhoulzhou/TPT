@@ -8,6 +8,7 @@ import android.net.Uri;
 
 public class TireTableOperator {
     private static Context mContext;
+    public static Uri URI = Uri.parse("content://com.example.tire.provider/" + TireTable.TABLE_NAME);
 
     public static void setContext(Context context){
         mContext = context;
@@ -19,9 +20,8 @@ public class TireTableOperator {
 
     static boolean isInsert = false;
     public static void insert(){
-        Uri uri = Uri.parse("content://com.example.tire.provider/" + TireTable.TABLE_NAME);
         ContentResolver resolver = mContext.getContentResolver();
-        Cursor cursor =  resolver.query(uri,new String[]{TireTable._ID},
+        Cursor cursor =  resolver.query(URI,new String[]{TireTable._ID},
                TireTable._ID + "=? ",new String[]{"112"},null);
 
         if(!isInsert){
@@ -45,7 +45,7 @@ public class TireTableOperator {
             values.put(TireTable.TEMPERATURE_FR,1.3);
             values.put(TireTable.TEMPERATURE_BL,1.3);
             values.put(TireTable.TEMPERATURE_BR,1.3);
-            resolver.update(uri,values,TireTable._ID,new String[]{"112"});
+            resolver.update(URI,values,TireTable._ID,new String[]{"112"});
         }else{
             ContentValues values = new ContentValues();
             values.put(TireTable._ID,112);
@@ -57,7 +57,7 @@ public class TireTableOperator {
             values.put(TireTable.TEMPERATURE_FR,1.2);
             values.put(TireTable.TEMPERATURE_BL,1.2);
             values.put(TireTable.TEMPERATURE_BR,1.2);
-            resolver.insert(uri,values);
+            resolver.insert(URI,values);
         }
 
     }

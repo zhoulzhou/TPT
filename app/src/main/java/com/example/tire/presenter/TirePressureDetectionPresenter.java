@@ -4,6 +4,7 @@ import android.os.Handler;
 
 import com.example.tire.common.LogUtils;
 import com.example.tire.common.TireUtils;
+import com.example.tire.model.IOnDataChangedListener;
 import com.example.tire.model.ITirePressureDetectionModel;
 import com.example.tire.view.ITirePressureDetectionView;
 
@@ -49,6 +50,21 @@ public class TirePressureDetectionPresenter implements ITirePressureDetectionPre
 
     @Override
     public void startTireDetection() {
+        mTirePressureDetectionModel.registerDBObserver();
+        mTirePressureDetectionModel.setOnDataChangedListener(new IOnDataChangedListener() {
+            @Override
+            public void onDataChanged() {
+                mTirePressureDetectionView.showTirePressureFL(getTirePressure(TireUtils.TIRE_FL),
+                        getTireTemperature(TireUtils.TIRE_FL));
+                mTirePressureDetectionView.showTirePressureFR(getTirePressure(TireUtils.TIRE_FR),
+                        getTireTemperature(TireUtils.TIRE_FR));
+                mTirePressureDetectionView.showTirePressureBL(getTirePressure(TireUtils.TIRE_BL),
+                        getTireTemperature(TireUtils.TIRE_BL));
+                mTirePressureDetectionView.showTirePressureBR(getTirePressure(TireUtils.TIRE_BR),
+                        getTireTemperature(TireUtils.TIRE_BR));
+            }
+        });
+
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -72,6 +88,7 @@ public class TirePressureDetectionPresenter implements ITirePressureDetectionPre
 
     @Override
     public void stopTireDetection() {
+        mTirePressureDetectionModel.unregisterDBObserver();
         mHandler.removeCallbacksAndMessages(null);
     }
 }

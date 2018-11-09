@@ -1,22 +1,30 @@
 package com.example.tire.model;
 
+import android.content.ContentResolver;
+import android.content.Context;
+import android.database.ContentObserver;
+import android.os.Handler;
+
 import com.example.tire.common.LogUtils;
 import com.example.tire.common.TireUtils;
+import com.example.tire.database.TireTableOperator;
 
 import java.util.Random;
 
 public class TirePressureDetectionModel implements ITirePressureDetectionModel {
     private volatile static TirePressureDetectionModel instance = null;
+    private Context mContext;
+    private IOnDataChangedListener mOnDataChangedListener;
 
-    public TirePressureDetectionModel() {
-
+    public TirePressureDetectionModel(Context context) {
+        mContext = context;
     }
 
-    public static TirePressureDetectionModel getInstance() {
+    public static TirePressureDetectionModel getInstance(Context context) {
         if (instance == null) {
             synchronized (TirePressureDetectionModel.class) {
                 if (instance == null) {
-                    instance = new TirePressureDetectionModel();
+                    instance = new TirePressureDetectionModel(context);
                 }
             }
         }
@@ -76,18 +84,31 @@ public class TirePressureDetectionModel implements ITirePressureDetectionModel {
 
     @Override
     public void registerDBObserver() {
-
+        mContext.getContentResolver().registerContentObserver(TireTableOperator.URI,true,observer);
     }
 
     @Override
     public void unregisterDBObserver() {
-
+        mContext.getContentResolver().unregisterContentObserver(observer);
     }
 
     @Override
     public void setOnDataChangedListener(IOnDataChangedListener listener) {
-
+        mOnDataChangedListener = listener;
     }
+
+    private ContentObserver observer = new ContentObserver(new Handler()) {
+        @Override
+        public boolean deliverSelfNotifications() {
+            return super.deliverSelfNotifications();
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            super.onChange(selfChange);
+            mOnDataChangedListener.onDataChanged();
+        }
+    };
 
     float min = 1f;
     float max = 10f;
