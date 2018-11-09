@@ -19,7 +19,7 @@ public class TireTableOperator {
 
     static boolean isInsert = false;
     public static void insert(){
-        Uri uri = Uri.parse("com.example.tire.provider/" + TireTable.TABLE_NAME);
+        Uri uri = Uri.parse("content://com.example.tire.provider/" + TireTable.TABLE_NAME);
         ContentResolver resolver = mContext.getContentResolver();
         Cursor cursor =  resolver.query(uri,new String[]{TireTable._ID},
                TireTable._ID + "=? ",new String[]{"112"},null);

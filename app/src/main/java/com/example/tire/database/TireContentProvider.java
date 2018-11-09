@@ -51,7 +51,11 @@ public class TireContentProvider extends ContentProvider {
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
         String table = getTableName(uri);
         SQLiteDatabase db = mDBHelper.getReadableDatabase();
-        return db.query(table,projection,selection,selectionArgs,null,null,sortOrder,null);
+        Cursor cursor = db.query(table,projection,selection,selectionArgs,null,null,sortOrder,null);
+        if (cursor != null){
+            cursor.setNotificationUri(getContext().getContentResolver(), uri);
+        }
+        return cursor;
     }
 
     @Nullable
@@ -62,7 +66,7 @@ public class TireContentProvider extends ContentProvider {
         db.insert(table,null,values);
 
         // 当该URI的ContentProvider数据发生变化时，通知外界（即访问该ContentProvider数据的访问者）
-        // observer : null 需要确定是哪个observer
+        // observer : null  通知所有的observer
         mContext.getContentResolver().notifyChange(uri,null);
         return uri;
     }
