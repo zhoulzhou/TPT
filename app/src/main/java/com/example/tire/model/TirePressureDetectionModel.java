@@ -74,6 +74,16 @@ public class TirePressureDetectionModel implements ITirePressureDetectionModel {
         return temperature;
     }
 
+    @Override
+    public void registerDBObserver() {
+
+    }
+
+    @Override
+    public void unregisterDBObserver() {
+
+    }
+
     float min = 1f;
     float max = 10f;
     private float generateRandomNumber(){
