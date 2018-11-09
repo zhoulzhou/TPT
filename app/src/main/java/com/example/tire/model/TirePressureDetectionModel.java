@@ -84,6 +84,11 @@ public class TirePressureDetectionModel implements ITirePressureDetectionModel {
 
     }
 
+    @Override
+    public void setOnDataChangedListener(IOnDataChangedListener listener) {
+
+    }
+
     float min = 1f;
     float max = 10f;
     private float generateRandomNumber(){
