@@ -21,7 +21,6 @@ public class DataService extends Service {
         super.onCreate();
         updateDataThread = new UpdateDataThread("updateDB");
         TireTableOperator.setContext(this);
-        TireTableOperator.insert();
     }
 
     @Override

@@ -52,14 +52,14 @@ public class TirePressureDetectionFragment extends Fragment implements ITirePres
     public void onResume() {
         super.onResume();
         LogUtils.d("onResume");
-        mTirePressureDetectionPresenter.startTireDetection();
+//        mTirePressureDetectionPresenter.startTireDetection();
     }
 
     @Override
     public void onPause() {
         super.onPause();
         LogUtils.d("onPause");
-        mTirePressureDetectionPresenter.stopTireDetection();
+//        mTirePressureDetectionPresenter.stopTireDetection();
     }
 
     @Override
@@ -110,6 +110,6 @@ public class TirePressureDetectionFragment extends Fragment implements ITirePres
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mTirePressureDetectionPresenter.stopTireDetection();
+//        mTirePressureDetectionPresenter.stopTireDetection();
     }
 }

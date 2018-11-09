@@ -1,5 +1,7 @@
 package com.example.tire.datafactory;
 
+import com.example.tire.database.TireTableOperator;
+
 public class UpdateDataThread extends Thread {
     private boolean isStop = true;
 
@@ -17,7 +19,7 @@ public class UpdateDataThread extends Thread {
             }
 
             //update db
-
+            TireTableOperator.insert();
         }
     }
 
