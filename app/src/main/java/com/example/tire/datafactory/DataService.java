@@ -5,14 +5,23 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
+import com.example.tire.database.TireTableOperator;
+
 public class DataService extends Service {
     private UpdateDataThread updateDataThread;
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        updateDataThread.start();
+        return super.onStartCommand(intent, flags, startId);
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
         updateDataThread = new UpdateDataThread("updateDB");
-        updateDataThread.start();
+        TireTableOperator.setContext(this);
+        TireTableOperator.insert();
     }
 
     @Override

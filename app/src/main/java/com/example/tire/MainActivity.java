@@ -2,9 +2,11 @@ package com.example.tire;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.tire.datafactory.DataService;
 import com.example.tire.view.TirePressureDetectionFragment;
 
 public class MainActivity extends AppCompatActivity{
@@ -21,5 +23,11 @@ public class MainActivity extends AppCompatActivity{
             fragmentTransaction.commit();
         }
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        startService(new Intent(this,DataService.class));
     }
 }
