@@ -1,13 +1,12 @@
 package com.example.tire.model;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.database.ContentObserver;
 import android.os.Handler;
 
 import com.example.tire.common.LogUtils;
 import com.example.tire.common.TireUtils;
-import com.example.tire.database.TireTableOperator;
+import com.example.tire.datafactory.TireTableOperator;
 
 import java.util.Random;
 

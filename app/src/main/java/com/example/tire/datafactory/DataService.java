@@ -17,8 +17,7 @@ public class DataService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        updateDataThread = new UpdateDataThread("updateDB");
-        TireTableOperator.setContext(this);
+        updateDataThread = new UpdateDataThread("updateDB",this);
     }
 
     @Override

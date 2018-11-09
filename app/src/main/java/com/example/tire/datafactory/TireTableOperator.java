@@ -9,57 +9,64 @@ import android.net.Uri;
 import com.example.tire.database.TireTable;
 
 public class TireTableOperator {
-    private static Context mContext;
+    private Context mContext;
     public static Uri URI = Uri.parse("content://com.example.tire.provider/" + TireTable.TABLE_NAME);
+    private ContentResolver resolver = mContext.getContentResolver();
+    boolean isInsert = false;
+    private static volatile TireTableOperator instance;
 
-    public static void setContext(Context context){
+    private TireTableOperator(Context context) {
         mContext = context;
     }
 
-    public static void update(){
-
-    }
-
-    static boolean isInsert = false;
-    public static void insert(){
-        ContentResolver resolver = mContext.getContentResolver();
-        Cursor cursor =  resolver.query(URI,new String[]{TireTable._ID},
-               TireTable._ID + "=? ",new String[]{"112"},null);
-
-        if(!isInsert){
-            while (cursor.moveToNext()){
-                float f = cursor.getFloat(cursor.getColumnIndex(TireTable.PRESSURE_FL));
-                if (f >= 0){
-                    isInsert = true;
-                    break;
+    public static TireTableOperator getInstance(Context context){
+        if(instance == null){
+            synchronized (TireTableOperator.class){
+                if (instance == null){
+                    instance = new TireTableOperator(context);
                 }
             }
         }
+        return instance;
+    }
+
+    public float getValue(String where) {
+        float value = -1;
+        Cursor cursor = resolver.query(URI, new String[]{TireTable._ID},
+                TireTable._ID + "=? ", new String[]{"112"}, null);
+        while (cursor.moveToNext()) {
+            value = cursor.getFloat(cursor.getColumnIndex(where));
+        }
+        return value;
+    }
 
 
-        if(isInsert){
+
+    public void insert() {
+        float f = getValue(TireTable.PRESSURE_FL);
+        if (isInsert) {
             ContentValues values = new ContentValues();
-            values.put(TireTable.PRESSURE_FL,1.3);
-            values.put(TireTable.PRESSURE_FR,1.3);
-            values.put(TireTable.PRESSURE_BL,1.3);
-            values.put(TireTable.PRESSURE_BR,1.3);
-            values.put(TireTable.TEMPERATURE_FL,1.3);
-            values.put(TireTable.TEMPERATURE_FR,1.3);
-            values.put(TireTable.TEMPERATURE_BL,1.3);
-            values.put(TireTable.TEMPERATURE_BR,1.3);
-            resolver.update(URI,values,TireTable._ID,new String[]{"112"});
-        }else{
+            values.put(TireTable.PRESSURE_FL, 1.3);
+            values.put(TireTable.PRESSURE_FR, 1.3);
+            values.put(TireTable.PRESSURE_BL, 1.3);
+            values.put(TireTable.PRESSURE_BR, 1.3);
+            values.put(TireTable.TEMPERATURE_FL, 1.3);
+            values.put(TireTable.TEMPERATURE_FR, 1.3);
+            values.put(TireTable.TEMPERATURE_BL, 1.3);
+            values.put(TireTable.TEMPERATURE_BR, 1.3);
+            resolver.update(URI, values, TireTable._ID, new String[]{"112"});
+        } else {
             ContentValues values = new ContentValues();
-            values.put(TireTable._ID,112);
-            values.put(TireTable.PRESSURE_FL,1.2);
-            values.put(TireTable.PRESSURE_FR,1.2);
-            values.put(TireTable.PRESSURE_BL,1.2);
-            values.put(TireTable.PRESSURE_BR,1.2);
-            values.put(TireTable.TEMPERATURE_FL,1.2);
-            values.put(TireTable.TEMPERATURE_FR,1.2);
-            values.put(TireTable.TEMPERATURE_BL,1.2);
-            values.put(TireTable.TEMPERATURE_BR,1.2);
-            resolver.insert(URI,values);
+            values.put(TireTable._ID, 112);
+            values.put(TireTable.PRESSURE_FL, 1.2);
+            values.put(TireTable.PRESSURE_FR, 1.2);
+            values.put(TireTable.PRESSURE_BL, 1.2);
+            values.put(TireTable.PRESSURE_BR, 1.2);
+            values.put(TireTable.TEMPERATURE_FL, 1.2);
+            values.put(TireTable.TEMPERATURE_FR, 1.2);
+            values.put(TireTable.TEMPERATURE_BL, 1.2);
+            values.put(TireTable.TEMPERATURE_BR, 1.2);
+            resolver.insert(URI, values);
         }
 
     }

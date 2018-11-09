@@ -1,10 +1,14 @@
 package com.example.tire.datafactory;
 
+import android.content.Context;
+
 public class UpdateDataThread extends Thread {
     private boolean isStop = true;
+    private Context mContext;
 
-    public UpdateDataThread(String updateDB) {
+    public UpdateDataThread(String updateDB, Context context) {
         super(updateDB);
+        mContext = context;
     }
 
     @Override
@@ -17,7 +21,7 @@ public class UpdateDataThread extends Thread {
 //            }
 
             //update db
-            TireTableOperator.insert();
+            TireTableOperator.getInstance(mContext).insert();
         }
     }
 
