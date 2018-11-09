@@ -12,11 +12,11 @@ public class UpdateDataThread extends Thread {
     @Override
     public void run() {
         while (!isStop){
-            try {
-                Thread.sleep(10000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                Thread.sleep(10000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
 
             //update db
             TireTableOperator.insert();
