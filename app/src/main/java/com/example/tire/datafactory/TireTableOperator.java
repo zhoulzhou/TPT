@@ -11,6 +11,9 @@ import com.example.tire.common.LogUtils;
 import com.example.tire.database.DBHelper;
 import com.example.tire.database.TireTable;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class TireTableOperator {
     private Context mContext;
     public static Uri URI = Uri.parse("content://com.example.tire.provider/" + TireTable.TABLE_NAME);
@@ -33,14 +36,22 @@ public class TireTableOperator {
         return instance;
     }
 
-    public float getValue(String where) {
-        float value = -1;
+    Map<String,Float> map = new HashMap<>(16);
+    public HashMap getValue() {
+        map.clear();
         Cursor cursor = resolver.query(URI, new String[]{TireTable.ID},
                 TireTable.ID + "=? ", new String[]{"112"}, null);
         while (cursor.moveToNext()) {
-            value = cursor.getFloat(cursor.getColumnIndex(where));
+            map.put(TireTable.PRESSURE_FL,cursor.getFloat(cursor.getColumnIndex(TireTable.PRESSURE_FL)));
+            map.put(TireTable.PRESSURE_FR,cursor.getFloat(cursor.getColumnIndex(TireTable.PRESSURE_FR)));
+            map.put(TireTable.PRESSURE_BL,cursor.getFloat(cursor.getColumnIndex(TireTable.PRESSURE_BL)));
+            map.put(TireTable.PRESSURE_BR,cursor.getFloat(cursor.getColumnIndex(TireTable.PRESSURE_BR)));
+            map.put(TireTable.TEMPERATURE_FL,cursor.getFloat(cursor.getColumnIndex(TireTable.TEMPERATURE_FL)));
+            map.put(TireTable.TEMPERATURE_FR,cursor.getFloat(cursor.getColumnIndex(TireTable.TEMPERATURE_FR)));
+            map.put(TireTable.TEMPERATURE_BL,cursor.getFloat(cursor.getColumnIndex(TireTable.TEMPERATURE_BL)));
+            map.put(TireTable.TEMPERATURE_BR,cursor.getFloat(cursor.getColumnIndex(TireTable.TEMPERATURE_BR)));
         }
-        return value;
+        return (HashMap) map;
     }
 
     public void insert() {

@@ -8,6 +8,7 @@ import com.example.tire.common.LogUtils;
 import com.example.tire.common.TireUtils;
 import com.example.tire.datafactory.TireTableOperator;
 
+import java.util.HashMap;
 import java.util.Random;
 
 public class TirePressureDetectionModel implements ITirePressureDetectionModel {
@@ -31,54 +32,8 @@ public class TirePressureDetectionModel implements ITirePressureDetectionModel {
     }
 
     @Override
-    public float getTirePressureFromDB(int whichTire) {
-        float pressure = 0;
-        switch (whichTire) {
-            case TireUtils.TIRE_FL:
-                pressure = generateRandomNumber();
-//                LogUtils.d("getTirePressureFromDB pressure FL= " + pressure);
-                break;
-            case TireUtils.TIRE_FR:
-                f = pressure = generateIncreaseNumber();
-                LogUtils.d("getTirePressureFromDB pressure FR= " + pressure);
-                break;
-            case TireUtils.TIRE_BL:
-                pressure = generateRandomNumber();
-                break;
-            case TireUtils.TIRE_BR:
-                pressure = generateRandomNumber();
-                break;
-            default:
-                pressure = -1;
-                break;
-        }
-        return pressure;
-    }
-
-    @Override
-    public float getTireTemperatureFromDB(int whichTire) {
-        float temperature = 0;
-        switch (whichTire) {
-            case TireUtils.TIRE_FL:
-                temperature = generateRandomNumber() * 10;
-//                LogUtils.d("getTireTemperatureFromDB temperature FL= " + temperature);
-                break;
-            case TireUtils.TIRE_FR:
-//                temperature = generateIncreaseNumber() * 10;
-                temperature = f * 10;
-                LogUtils.d("getTireTemperatureFromDB temperature FR= " + temperature);
-                break;
-            case TireUtils.TIRE_BL:
-                temperature = generateRandomNumber() * 10;
-                break;
-            case TireUtils.TIRE_BR:
-                temperature = generateRandomNumber() * 10;
-                break;
-            default:
-                temperature = -1;
-                break;
-        }
-        return temperature;
+    public HashMap getTirePressureValueFromDB() {
+        return TireTableOperator.getInstance(mContext).getValue();
     }
 
     @Override
