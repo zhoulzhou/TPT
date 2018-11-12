@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.example.tire.common.LogUtils;
 import com.example.tire.datafactory.DataService;
+import com.example.tire.datafactory.TireTableOperator;
 import com.example.tire.view.TirePressureDetectionFragment;
 
 public class MainActivity extends AppCompatActivity{
@@ -16,6 +17,9 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TireTableOperator.getInstance(this).insert();
+
         if(savedInstanceState == null) {
             FragmentManager mFragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();

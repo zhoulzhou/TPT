@@ -18,7 +18,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         LogUtils.d("DBHelper onCreate");
         db.execSQL("CREATE TABLE IF NOT EXISTS " + TireTable.TABLE_NAME + "("
-                + TireTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + TireTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + TireTable.ID + " INTEGER,"
                 + TireTable.PRESSURE_FL + " REAL, " + TireTable.PRESSURE_FR + " REAL, "
                 + TireTable.PRESSURE_BL + " REAL, " + TireTable.PRESSURE_BR + " REAL, "
                 + TireTable.TEMPERATURE_FL + " REAL, " + TireTable.TEMPERATURE_FR + " REAL, "
@@ -30,4 +30,6 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         LogUtils.d("DBHelper onUpgrade ");
     }
+
+
 }

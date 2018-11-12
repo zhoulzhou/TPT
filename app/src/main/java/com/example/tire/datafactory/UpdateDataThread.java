@@ -15,17 +15,18 @@ public class UpdateDataThread extends Thread {
 
     @Override
     public void run() {
-        while (!isStop){
-//            try {
-//                Thread.sleep(10000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-
-            //update db
-            LogUtils.d("UpdateDataThread run");
-            TireTableOperator.getInstance(mContext).insert();
-        }
+//        while (!isStop){
+////            try {
+////                Thread.sleep(10000);
+////            } catch (InterruptedException e) {
+////                e.printStackTrace();
+////            }
+//
+//            //update db
+//            LogUtils.d("UpdateDataThread run");
+//            TireTableOperator.getInstance(mContext).insert();
+//        }
+//        TireTableOperator.getInstance(mContext).update();
     }
 
     public void killSelf(){
