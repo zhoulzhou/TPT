@@ -5,6 +5,7 @@ import android.provider.BaseColumns;
 public class TireTable implements BaseColumns {
     public final static String TABLE_NAME = "tire";
 
+    public final static String ID= "id";
     public final static String PRESSURE_FL = "pressure_fl";
     public final static String PRESSURE_FR = "pressure_fr";
     public final static String PRESSURE_BL = "pressure_bl";
