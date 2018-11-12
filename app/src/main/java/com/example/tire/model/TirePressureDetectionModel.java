@@ -60,6 +60,7 @@ public class TirePressureDetectionModel implements ITirePressureDetectionModel {
         @Override
         public void onChange(boolean selfChange) {
             super.onChange(selfChange);
+            LogUtils.d("observer onChange ");
             mOnDataChangedListener.onDataChanged();
         }
     };

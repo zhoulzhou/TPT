@@ -42,6 +42,7 @@ public class TirePressureDetectionPresenter implements ITirePressureDetectionPre
         mTirePressureDetectionModel.setOnDataChangedListener(new IOnDataChangedListener() {
             @Override
             public void onDataChanged() {
+                LogUtils.d("IOnDataChangedListener onDataChanged ");
                 if(!isViewAttached()){
                     return;
                 }
