@@ -20,7 +20,7 @@ public class DataService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        updateDataThread = new UpdateDataThread("updateDB",this);
+        updateDataThread = new UpdateDataThread("UpdateDBThread",this);
     }
 
     @Override

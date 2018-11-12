@@ -23,10 +23,9 @@ public class UpdateDataThread extends Thread {
 ////            }
 //
 //            //update db
-//            LogUtils.d("UpdateDataThread run");
-//            TireTableOperator.getInstance(mContext).insert();
 //        }
-//        TireTableOperator.getInstance(mContext).update();
+        LogUtils.d("UpdateDataThread run");
+        TireTableOperator.getInstance(mContext).update();
     }
 
     public void killSelf(){

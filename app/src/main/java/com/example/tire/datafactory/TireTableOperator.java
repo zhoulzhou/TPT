@@ -69,7 +69,8 @@ public class TireTableOperator {
         values.put(TireTable.TEMPERATURE_FR, 1.3);
         values.put(TireTable.TEMPERATURE_BL, 1.3);
         values.put(TireTable.TEMPERATURE_BR, 1.3);
+        LogUtils.d("TireTableOperator update URI= " + URI.toString());
         LogUtils.d("TireTableOperator update values= " + values.toString());
-        resolver.update(URI, values, TireTable.ID, new String[]{"112"});
+        resolver.update(URI, values, TireTable.ID + "=?", new String[]{"112"});
     }
 }

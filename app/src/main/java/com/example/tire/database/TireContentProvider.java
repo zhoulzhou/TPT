@@ -87,9 +87,12 @@ public class TireContentProvider extends ContentProvider {
     public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection, @Nullable String[] selectionArgs) {
         String table = getTableName(uri);
         SQLiteDatabase db = mDBHelper.getWritableDatabase();
+        LogUtils.d("TireContentProvider update values= " + values.toString());
+        LogUtils.d("TireContentProvider update selection= " + selection);
+        LogUtils.d("TireContentProvider update selectionArgs= " + selectionArgs);
         int re =  db.update(table,values,selection,selectionArgs);
         mContext.getContentResolver().notifyChange(uri,null);
-        LogUtils.d("TireContentProvider insert re= " + re);
+        LogUtils.d("TireContentProvider update re= " + re);
         return re;
     }
 
