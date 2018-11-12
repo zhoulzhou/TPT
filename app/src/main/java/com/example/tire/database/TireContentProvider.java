@@ -53,7 +53,10 @@ public class TireContentProvider extends ContentProvider {
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
         String table = getTableName(uri);
         SQLiteDatabase db = mDBHelper.getReadableDatabase();
-        Cursor cursor = db.query(table,projection,selection,selectionArgs,null,null,sortOrder,null);
+        LogUtils.d("TireContentProvider query  uri= " + uri);
+        LogUtils.d("TireContentProvider query  selection= " + selection);
+//        LogUtils.d("TireContentProvider query  selectionArgs= " + selectionArgs[0]);
+        Cursor cursor = db.query(table,projection,selection,selectionArgs,null,null,sortOrder);
         if (cursor != null){
             cursor.setNotificationUri(getContext().getContentResolver(), uri);
         }

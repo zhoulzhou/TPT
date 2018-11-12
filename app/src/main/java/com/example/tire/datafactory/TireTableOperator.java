@@ -37,20 +37,25 @@ public class TireTableOperator {
     }
 
     Map<String,Float> map = new HashMap<>(16);
+    Cursor cursor;
     public HashMap getValue() {
         map.clear();
-        Cursor cursor = resolver.query(URI, new String[]{TireTable.ID},
-                TireTable.ID + "=? ", new String[]{"112"}, null);
-        while (cursor.moveToNext()) {
-            map.put(TireTable.PRESSURE_FL,cursor.getFloat(cursor.getColumnIndex(TireTable.PRESSURE_FL)));
-            map.put(TireTable.PRESSURE_FR,cursor.getFloat(cursor.getColumnIndex(TireTable.PRESSURE_FR)));
-            map.put(TireTable.PRESSURE_BL,cursor.getFloat(cursor.getColumnIndex(TireTable.PRESSURE_BL)));
-            map.put(TireTable.PRESSURE_BR,cursor.getFloat(cursor.getColumnIndex(TireTable.PRESSURE_BR)));
-            map.put(TireTable.TEMPERATURE_FL,cursor.getFloat(cursor.getColumnIndex(TireTable.TEMPERATURE_FL)));
-            map.put(TireTable.TEMPERATURE_FR,cursor.getFloat(cursor.getColumnIndex(TireTable.TEMPERATURE_FR)));
-            map.put(TireTable.TEMPERATURE_BL,cursor.getFloat(cursor.getColumnIndex(TireTable.TEMPERATURE_BL)));
-            map.put(TireTable.TEMPERATURE_BR,cursor.getFloat(cursor.getColumnIndex(TireTable.TEMPERATURE_BR)));
+        cursor = resolver.query(URI, null, TireTable.ID + "=? ", new String[]{"112"},null);
+        if(cursor !=null && cursor.moveToFirst()){
+            LogUtils.d("TireTableOperator moveToFirst getCount= " + cursor.getCount());
+            do {
+                map.put(TireTable.PRESSURE_FL,cursor.getFloat(cursor.getColumnIndex(TireTable.PRESSURE_FL)));
+                map.put(TireTable.PRESSURE_FR,cursor.getFloat(cursor.getColumnIndex(TireTable.PRESSURE_FR)));
+                map.put(TireTable.PRESSURE_BL,cursor.getFloat(cursor.getColumnIndex(TireTable.PRESSURE_BL)));
+                map.put(TireTable.PRESSURE_BR,cursor.getFloat(cursor.getColumnIndex(TireTable.PRESSURE_BR)));
+                map.put(TireTable.TEMPERATURE_FL,cursor.getFloat(cursor.getColumnIndex(TireTable.TEMPERATURE_FL)));
+                map.put(TireTable.TEMPERATURE_FR,cursor.getFloat(cursor.getColumnIndex(TireTable.TEMPERATURE_FR)));
+                map.put(TireTable.TEMPERATURE_BL,cursor.getFloat(cursor.getColumnIndex(TireTable.TEMPERATURE_BL)));
+                map.put(TireTable.TEMPERATURE_BR,cursor.getFloat(cursor.getColumnIndex(TireTable.TEMPERATURE_BR)));
+            }while (cursor.moveToNext());
         }
+        cursor.close();
+        LogUtils.d("TireTableOperator getValue map= " + map.toString());
         return (HashMap) map;
     }
 
