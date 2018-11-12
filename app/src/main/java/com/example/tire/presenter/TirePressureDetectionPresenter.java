@@ -15,7 +15,6 @@ import java.util.Map;
 public class TirePressureDetectionPresenter implements ITirePressureDetectionPresenter {
     private ITirePressureDetectionView mTirePressureDetectionView;
     private ITirePressureDetectionModel mTirePressureDetectionModel;
-    private Handler mHandler = new Handler();
     private Map<String,Float> mTirePressureMap = new HashMap<>(16);
 
     public TirePressureDetectionPresenter(ITirePressureDetectionModel model){
@@ -67,6 +66,5 @@ public class TirePressureDetectionPresenter implements ITirePressureDetectionPre
     @Override
     public void stopTireDetection() {
         mTirePressureDetectionModel.unregisterDBObserver();
-        mHandler.removeCallbacksAndMessages(null);
     }
 }

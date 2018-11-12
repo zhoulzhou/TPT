@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.tire.common.LogUtils;
+import com.example.tire.common.SPrefUtils;
 import com.example.tire.datafactory.DataService;
 import com.example.tire.datafactory.TireTableOperator;
 import com.example.tire.view.TirePressureDetectionFragment;
@@ -18,7 +19,7 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TireTableOperator.getInstance(this).insert();
+        insertTireDBFirst();
 
         if(savedInstanceState == null) {
             FragmentManager mFragmentManager = getFragmentManager();
@@ -35,5 +36,12 @@ public class MainActivity extends AppCompatActivity{
         super.onStart();
         LogUtils.d("MainActivity onStart");
         startService(new Intent(this,DataService.class));
+    }
+
+    private void insertTireDBFirst(){
+        if(!SPrefUtils.getBoolean(this,SPrefUtils.IS_INSERT_DB_FIRST,false)){
+            TireTableOperator.getInstance(this).insert();
+            SPrefUtils.setBoolean(this,SPrefUtils.IS_INSERT_DB_FIRST,true);
+        }
     }
 }

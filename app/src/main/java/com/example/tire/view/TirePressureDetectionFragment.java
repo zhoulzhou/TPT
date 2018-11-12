@@ -110,6 +110,6 @@ public class TirePressureDetectionFragment extends Fragment implements ITirePres
     @Override
     public void onDestroy() {
         super.onDestroy();
-//        mTirePressureDetectionPresenter.stopTireDetection();
+        mTirePressureDetectionPresenter.stopTireDetection();
     }
 }
