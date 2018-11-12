@@ -16,6 +16,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        LogUtils.d("DBHelper onCreate");
         db.execSQL("CREATE TABLE IF NOT EXISTS " + TireTable.TABLE_NAME + "("
                 + TireTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + TireTable.PRESSURE_FL + " REAL, " + TireTable.PRESSURE_FR + " REAL, "

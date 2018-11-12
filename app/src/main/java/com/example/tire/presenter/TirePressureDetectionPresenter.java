@@ -50,6 +50,7 @@ public class TirePressureDetectionPresenter implements ITirePressureDetectionPre
 
     @Override
     public void startTireDetection() {
+        /*
         mTirePressureDetectionModel.registerDBObserver();
         mTirePressureDetectionModel.setOnDataChangedListener(new IOnDataChangedListener() {
             @Override
@@ -64,7 +65,7 @@ public class TirePressureDetectionPresenter implements ITirePressureDetectionPre
                         getTireTemperature(TireUtils.TIRE_BR));
             }
         });
-
+*/
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {

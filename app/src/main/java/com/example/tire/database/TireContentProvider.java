@@ -10,6 +10,8 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.example.tire.common.LogUtils;
+
 public class TireContentProvider extends ContentProvider {
     private DBHelper mDBHelper = null;
     private Context mContext;
@@ -68,6 +70,7 @@ public class TireContentProvider extends ContentProvider {
         // 当该URI的ContentProvider数据发生变化时，通知外界（即访问该ContentProvider数据的访问者）
         // observer : null  通知所有的observer
         mContext.getContentResolver().notifyChange(uri,null);
+        LogUtils.d("TireContentProvider insert uri= " + uri);
         return uri;
     }
 
@@ -86,6 +89,7 @@ public class TireContentProvider extends ContentProvider {
         SQLiteDatabase db = mDBHelper.getWritableDatabase();
         int re =  db.update(table,values,selection,selectionArgs);
         mContext.getContentResolver().notifyChange(uri,null);
+        LogUtils.d("TireContentProvider insert re= " + re);
         return re;
     }
 

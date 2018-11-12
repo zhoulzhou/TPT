@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.tire.common.LogUtils;
 import com.example.tire.datafactory.DataService;
 import com.example.tire.view.TirePressureDetectionFragment;
 
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onStart() {
         super.onStart();
+        LogUtils.d("MainActivity onStart");
         startService(new Intent(this,DataService.class));
     }
 }

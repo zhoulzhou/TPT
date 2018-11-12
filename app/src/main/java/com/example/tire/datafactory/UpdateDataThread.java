@@ -2,8 +2,10 @@ package com.example.tire.datafactory;
 
 import android.content.Context;
 
+import com.example.tire.common.LogUtils;
+
 public class UpdateDataThread extends Thread {
-    private boolean isStop = true;
+    private boolean isStop = false;
     private Context mContext;
 
     public UpdateDataThread(String updateDB, Context context) {
@@ -21,6 +23,7 @@ public class UpdateDataThread extends Thread {
 //            }
 
             //update db
+            LogUtils.d("UpdateDataThread run");
             TireTableOperator.getInstance(mContext).insert();
         }
     }
