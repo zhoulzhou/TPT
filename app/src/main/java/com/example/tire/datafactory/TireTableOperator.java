@@ -13,6 +13,7 @@ import com.example.tire.database.TireTable;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class TireTableOperator {
     private Context mContext;
@@ -76,17 +77,35 @@ public class TireTableOperator {
     }
 
     public void update() {
+        f = generateIncreaseNumber();
         ContentValues values = new ContentValues();
         values.put(TireTable.PRESSURE_FL, 1.3);
-        values.put(TireTable.PRESSURE_FR, 1.3);
+        values.put(TireTable.PRESSURE_FR, f);
         values.put(TireTable.PRESSURE_BL, 1.3);
         values.put(TireTable.PRESSURE_BR, 1.3);
         values.put(TireTable.TEMPERATURE_FL, 1.3);
-        values.put(TireTable.TEMPERATURE_FR, 1.3);
+        values.put(TireTable.TEMPERATURE_FR, f * 10);
         values.put(TireTable.TEMPERATURE_BL, 1.3);
         values.put(TireTable.TEMPERATURE_BR, 1.3);
         LogUtils.d("TireTableOperator update URI= " + URI.toString());
         LogUtils.d("TireTableOperator update values= " + values.toString());
         resolver.update(URI, values, TireTable.ID + "=?", new String[]{"112"});
+    }
+
+    float min = 1f;
+    float max = 10f;
+    private float generateRandomNumber(){
+        return min + new Random().nextFloat() * (max - min);
+    }
+
+    private float f= 1;
+    private float generateIncreaseNumber(){
+        if(f <= 10){
+            f += 1;
+        }else {
+            f = 0;
+        }
+        LogUtils.d("generateIncreaseNumber f= " + f);
+        return f;
     }
 }

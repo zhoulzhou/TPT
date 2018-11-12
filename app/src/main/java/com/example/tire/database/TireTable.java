@@ -6,12 +6,12 @@ public class TireTable implements BaseColumns {
     public final static String TABLE_NAME = "tire";
 
     public final static String ID= "id";
-    public final static String PRESSURE_FL = "pressurefl";
-    public final static String PRESSURE_FR = "pressurefr";
-    public final static String PRESSURE_BL = "pressurebl";
-    public final static String PRESSURE_BR = "pressurebr";
-    public final static String TEMPERATURE_FL = "temperaturefl";
-    public final static String TEMPERATURE_FR = "temperaturefr";
-    public final static String TEMPERATURE_BL = "temperaturebl";
-    public final static String TEMPERATURE_BR = "temperaturebr";
+    public final static String PRESSURE_FL = "pressureFL";
+    public final static String PRESSURE_FR = "pressureFR";
+    public final static String PRESSURE_BL = "pressureBL";
+    public final static String PRESSURE_BR = "pressureBR";
+    public final static String TEMPERATURE_FL = "temperatureFL";
+    public final static String TEMPERATURE_FR = "temperatureFR";
+    public final static String TEMPERATURE_BL = "temperatureBL";
+    public final static String TEMPERATURE_BR = "temperatureBR";
 }

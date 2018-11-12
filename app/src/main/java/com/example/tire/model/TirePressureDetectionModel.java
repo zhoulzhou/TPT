@@ -63,21 +63,4 @@ public class TirePressureDetectionModel implements ITirePressureDetectionModel {
             mOnDataChangedListener.onDataChanged();
         }
     };
-
-    float min = 1f;
-    float max = 10f;
-    private float generateRandomNumber(){
-        return min + new Random().nextFloat() * (max - min);
-    }
-
-    private float f= 1;
-    private float generateIncreaseNumber(){
-        if(f <= 10){
-            f += 1;
-        }else {
-            f = 0;
-        }
-        LogUtils.d("f3= " + f);
-        return f;
-    }
 }
