@@ -79,14 +79,14 @@ public class TireTableOperator {
     public void update() {
         f = generateIncreaseNumber();
         ContentValues values = new ContentValues();
-        values.put(TireTable.PRESSURE_FL, 1.3);
+        values.put(TireTable.PRESSURE_FL, generateRandomNumber());
         values.put(TireTable.PRESSURE_FR, f);
-        values.put(TireTable.PRESSURE_BL, 1.3);
-        values.put(TireTable.PRESSURE_BR, 1.3);
-        values.put(TireTable.TEMPERATURE_FL, 1.3);
+        values.put(TireTable.PRESSURE_BL, generateRandomNumber());
+        values.put(TireTable.PRESSURE_BR, generateRandomNumber());
+        values.put(TireTable.TEMPERATURE_FL, generateRandomNumber()*10);
         values.put(TireTable.TEMPERATURE_FR, f * 10);
-        values.put(TireTable.TEMPERATURE_BL, 1.3);
-        values.put(TireTable.TEMPERATURE_BR, 1.3);
+        values.put(TireTable.TEMPERATURE_BL, generateRandomNumber()*10);
+        values.put(TireTable.TEMPERATURE_BR, generateRandomNumber()*10);
         LogUtils.d("TireTableOperator update URI= " + URI.toString());
         LogUtils.d("TireTableOperator update values= " + values.toString());
         resolver.update(URI, values, TireTable.ID + "=?", new String[]{"112"});
