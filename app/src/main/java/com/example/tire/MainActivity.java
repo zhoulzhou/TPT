@@ -29,12 +29,6 @@ public class MainActivity extends AppCompatActivity{
             fragmentTransaction.commit();
         }
 
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        LogUtils.d("MainActivity onStart");
         startService(new Intent(this,DataService.class));
     }
 
