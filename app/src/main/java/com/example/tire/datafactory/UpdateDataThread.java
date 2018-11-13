@@ -1,14 +1,12 @@
 package com.example.tire.datafactory;
 
-import android.content.Context;
-
 import com.example.tire.common.LogUtils;
 
 public class UpdateDataThread extends Thread {
     private boolean isStop = false;
 
-    public UpdateDataThread(String updateDB) {
-        super(updateDB);
+    public UpdateDataThread(String name) {
+        super(name);
     }
 
     @Override
