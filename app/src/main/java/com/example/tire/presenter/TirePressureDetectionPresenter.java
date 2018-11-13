@@ -1,9 +1,6 @@
 package com.example.tire.presenter;
 
-import android.os.Handler;
-
 import com.example.tire.common.LogUtils;
-import com.example.tire.common.TireUtils;
 import com.example.tire.database.TireTable;
 import com.example.tire.model.IOnDataChangedListener;
 import com.example.tire.model.ITirePressureDetectionModel;
@@ -19,21 +16,6 @@ public class TirePressureDetectionPresenter implements ITirePressureDetectionPre
 
     public TirePressureDetectionPresenter(ITirePressureDetectionModel model){
         mTirePressureDetectionModel = model;
-    }
-
-    @Override
-    public void attachView(ITirePressureDetectionView view) {
-        mTirePressureDetectionView = view;
-    }
-
-    @Override
-    public void detachView() {
-        mTirePressureDetectionView = null;
-    }
-
-    @Override
-    public boolean isViewAttached() {
-        return mTirePressureDetectionView != null;
     }
 
     @Override
@@ -67,5 +49,20 @@ public class TirePressureDetectionPresenter implements ITirePressureDetectionPre
     @Override
     public void stopTireDetection() {
         mTirePressureDetectionModel.unregisterDBObserver();
+    }
+
+    @Override
+    public void attachView(ITirePressureDetectionView view) {
+        mTirePressureDetectionView = view;
+    }
+
+    @Override
+    public void detachView() {
+        mTirePressureDetectionView = null;
+    }
+
+    @Override
+    public boolean isViewAttached() {
+        return mTirePressureDetectionView != null;
     }
 }
