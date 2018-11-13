@@ -1,18 +1,18 @@
-package com.example.tire;
+package com.example.tire.application;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
-import com.example.tire.common.LogUtils;
+import com.example.tire.R;
 import com.example.tire.common.SPrefUtils;
 import com.example.tire.datafactory.DataService;
 import com.example.tire.datafactory.TireTableOperator;
 import com.example.tire.view.TirePressureDetectionFragment;
 
-public class MainActivity extends AppCompatActivity{
+public class TirePressureDetectionActivity extends AppCompatActivity {
     private Intent mServiceIntent;
 
     @Override
@@ -44,7 +44,5 @@ public class MainActivity extends AppCompatActivity{
             TireTableOperator.getInstance(this).insert();
             SPrefUtils.setBoolean(this,SPrefUtils.IS_INSERT_DB_FIRST,true);
         }
-
-
     }
 }
