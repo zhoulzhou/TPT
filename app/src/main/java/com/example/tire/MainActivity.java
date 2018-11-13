@@ -13,6 +13,7 @@ import com.example.tire.datafactory.TireTableOperator;
 import com.example.tire.view.TirePressureDetectionFragment;
 
 public class MainActivity extends AppCompatActivity{
+    private Intent mServiceIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +29,14 @@ public class MainActivity extends AppCompatActivity{
             fragmentTransaction.add(R.id.fragment_layout, tirePressureDetectionFragment, "tire_pressure_detection");
             fragmentTransaction.commit();
         }
+        mServiceIntent = new Intent(this,DataService.class);
+        startService(mServiceIntent);
+    }
 
-        startService(new Intent(this,DataService.class));
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(mServiceIntent);
     }
 
     private void insertTireDBFirst(){
@@ -37,5 +44,7 @@ public class MainActivity extends AppCompatActivity{
             TireTableOperator.getInstance(this).insert();
             SPrefUtils.setBoolean(this,SPrefUtils.IS_INSERT_DB_FIRST,true);
         }
+
+
     }
 }
