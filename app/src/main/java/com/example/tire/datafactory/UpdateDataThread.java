@@ -17,14 +17,14 @@ public class UpdateDataThread extends Thread {
     public void run() {
         while (!isStop){
             try {
-                Thread.sleep(10000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
             //update db
             LogUtils.d("UpdateDataThread run thread= " + Thread.currentThread().getName());
-            TireTableOperator.getInstance(mContext).update();
+            TireTableOperator.getInstance().update();
         }
 
     }

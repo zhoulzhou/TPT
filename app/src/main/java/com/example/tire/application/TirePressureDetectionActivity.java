@@ -41,7 +41,7 @@ public class TirePressureDetectionActivity extends AppCompatActivity {
 
     private void insertTireDBFirst(){
         if(!SPrefUtils.getBoolean(this,SPrefUtils.IS_INSERT_DB_FIRST,false)){
-            TireTableOperator.getInstance(this).insert();
+            TireTableOperator.getInstance().insert();
             SPrefUtils.setBoolean(this,SPrefUtils.IS_INSERT_DB_FIRST,true);
         }
     }

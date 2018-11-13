@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.ContentObserver;
 import android.os.Handler;
 
+import com.example.tire.application.TirePressureDetectionApplication;
 import com.example.tire.common.LogUtils;
 import com.example.tire.common.TireUtils;
 import com.example.tire.datafactory.TireTableOperator;
@@ -16,15 +17,15 @@ public class TirePressureDetectionModel implements ITirePressureDetectionModel {
     private Context mContext;
     private IOnDataChangedListener mOnDataChangedListener;
 
-    public TirePressureDetectionModel(Context context) {
-        mContext = context;
+    public TirePressureDetectionModel() {
+        mContext = TirePressureDetectionApplication.getContext();
     }
 
-    public static TirePressureDetectionModel getInstance(Context context) {
+    public static TirePressureDetectionModel getInstance() {
         if (instance == null) {
             synchronized (TirePressureDetectionModel.class) {
                 if (instance == null) {
-                    instance = new TirePressureDetectionModel(context);
+                    instance = new TirePressureDetectionModel();
                 }
             }
         }
@@ -33,7 +34,7 @@ public class TirePressureDetectionModel implements ITirePressureDetectionModel {
 
     @Override
     public HashMap getTirePressureValueFromDB() {
-        return TireTableOperator.getInstance(mContext).getValue();
+        return TireTableOperator.getInstance().getValue();
     }
 
     @Override

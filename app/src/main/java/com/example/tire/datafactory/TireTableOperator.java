@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
+import com.example.tire.application.TirePressureDetectionApplication;
 import com.example.tire.common.LogUtils;
 import com.example.tire.database.DBHelper;
 import com.example.tire.database.TireTable;
@@ -21,16 +22,16 @@ public class TireTableOperator {
     private ContentResolver resolver;
     private static volatile TireTableOperator instance;
 
-    private TireTableOperator(Context context) {
-        mContext = context;
+    private TireTableOperator() {
+        mContext = TirePressureDetectionApplication.getContext();
         resolver = mContext.getContentResolver();
     }
 
-    public static TireTableOperator getInstance(Context context) {
+    public static TireTableOperator getInstance() {
         if (instance == null) {
             synchronized (TireTableOperator.class) {
                 if (instance == null) {
-                    instance = new TireTableOperator(context);
+                    instance = new TireTableOperator();
                 }
             }
         }
