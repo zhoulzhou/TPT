@@ -6,11 +6,9 @@ import com.example.tire.common.LogUtils;
 
 public class UpdateDataThread extends Thread {
     private boolean isStop = false;
-    private Context mContext;
 
-    public UpdateDataThread(String updateDB, Context context) {
+    public UpdateDataThread(String updateDB) {
         super(updateDB);
-        mContext = context;
     }
 
     @Override
