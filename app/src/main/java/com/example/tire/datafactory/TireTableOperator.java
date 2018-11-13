@@ -4,12 +4,10 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
 import com.example.tire.application.TirePressureDetectionApplication;
 import com.example.tire.common.LogUtils;
-import com.example.tire.database.DBHelper;
 import com.example.tire.database.TireTable;
 
 import java.util.HashMap;
@@ -62,7 +60,6 @@ public class TireTableOperator {
     }
 
     public void insert() {
-        SQLiteDatabase db = new DBHelper(mContext).getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(TireTable.ID, 112);
         values.put(TireTable.PRESSURE_FL, 1.2);
@@ -74,7 +71,7 @@ public class TireTableOperator {
         values.put(TireTable.TEMPERATURE_BL, 1.2);
         values.put(TireTable.TEMPERATURE_BR, 1.2);
         LogUtils.d("TireTableOperator insert values= " + values.toString());
-        db.insert(TireTable.TABLE_NAME, null, values);
+        resolver.insert(URI,values);
     }
 
     public void update() {
