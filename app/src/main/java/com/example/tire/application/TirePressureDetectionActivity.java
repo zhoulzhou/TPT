@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.tire.R;
+import com.example.tire.common.LogUtils;
 import com.example.tire.common.SPrefUtils;
 import com.example.tire.datafactory.DataService;
 import com.example.tire.datafactory.TireTableOperator;
@@ -36,6 +37,7 @@ public class TirePressureDetectionActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        LogUtils.d("TirePressureDetectionActivity onDestroy");
         stopService(mServiceIntent);
     }
 
@@ -45,4 +47,11 @@ public class TirePressureDetectionActivity extends AppCompatActivity {
             SPrefUtils.setBoolean(this,SPrefUtils.IS_INSERT_DB_FIRST,true);
         }
     }
+
+//    @Override
+//    public void onBackPressed() {
+////        super.onBackPressed();
+//        finish();
+//        System.exit(0);
+//    }
 }
