@@ -96,7 +96,7 @@ public class TireTableOperator {
         return min + new Random().nextFloat() * (max - min);
     }
 
-    private float f= 1;
+    private float f= 0;
     private float generateIncreaseNumber(){
         if(f <= 10){
             f += 1;
