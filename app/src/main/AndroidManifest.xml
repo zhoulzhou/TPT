@@ -21,6 +21,7 @@
         <provider
             android:name=".database.TireContentProvider"
             android:authorities="com.example.tire.provider" />
+
         <service android:name=".datafactory.DataService"/>
 
     </application>
