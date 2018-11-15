@@ -97,7 +97,7 @@ public class TireTableOperator {
     }
 
     private float f= 0;
-    private float generateIncreaseNumber(){
+    public float generateIncreaseNumber(){
         if(f <= 10){
             f += 1;
         }else {

@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.lang.reflect.GenericArrayType;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,7 +36,9 @@ public class TireTableOperatorTest {
 
     @Test
     public void testgenerateIncreaseNumber(){
-        TireTableOperator.getInstance().generateIncreaseNumber();
+        float f= TireTableOperator.getInstance().generateIncreaseNumber();
+        System.out.println("f= " + f);
+        assertEquals(1.0, f,0);
     }
 
 }
