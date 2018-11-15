@@ -42,7 +42,6 @@ public class TirePressureDetectionFragmentTest {
     @Test
     public void testFragment() throws Exception{
         ViewInteraction car_bg = onView(withId(R.id.car_bg));
-        car_bg.check(doesNotExist());
         car_bg.check(matches(isDisplayed()));
         car_bg.perform(click());
     }
