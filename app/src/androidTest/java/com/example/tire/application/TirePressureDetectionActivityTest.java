@@ -11,8 +11,8 @@ import static org.junit.Assert.*;
 public class TirePressureDetectionActivityTest extends ActivityInstrumentationTestCase2<TirePressureDetectionActivity> {
 
     private TirePressureDetectionActivity tirePressureDetectionActivity;
-    public TirePressureDetectionActivityTest(Class<TirePressureDetectionActivity> activityClass) {
-        super(activityClass);
+    public TirePressureDetectionActivityTest() {
+        super(TirePressureDetectionActivity.class);
     }
 
     @Before
