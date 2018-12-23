@@ -4,30 +4,24 @@ import android.content.Context;
 import android.database.ContentObserver;
 import android.os.Handler;
 
-import com.example.tire.application.TirePressureDetectionApplication;
 import com.example.tire.common.LogUtils;
-import com.example.tire.common.TireUtils;
 import com.example.tire.datafactory.TireTableOperator;
 
 import java.util.HashMap;
-import java.util.Random;
 
 public class TirePressureDetectionModel implements ITirePressureDetectionModel {
-    private volatile static TirePressureDetectionModel instance = null;
+    private TirePressureDetectionModel instance = null;
     private Context mContext;
     private IOnDataChangedListener mOnDataChangedListener;
 
     public TirePressureDetectionModel() {
-        mContext = TirePressureDetectionApplication.getContext();
+
     }
 
-    public static TirePressureDetectionModel getInstance() {
+    public TirePressureDetectionModel getInstance(Context context) {
+        mContext = context;
         if (instance == null) {
-            synchronized (TirePressureDetectionModel.class) {
-                if (instance == null) {
-                    instance = new TirePressureDetectionModel();
-                }
-            }
+            instance = new TirePressureDetectionModel();
         }
         return instance;
     }

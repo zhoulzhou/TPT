@@ -1,7 +1,6 @@
 package com.example.tire.view;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -36,7 +35,7 @@ public class TirePressureDetectionFragment extends Fragment implements ITirePres
         mTirePressureBL = (ImageView) view.findViewById(R.id.tire_bl);
         mTirePressureBR = (ImageView) view.findViewById(R.id.tire_br);
 
-        mTirePressureDetectionPresenter = new TirePressureDetectionPresenter(TirePressureDetectionModel.getInstance());
+        mTirePressureDetectionPresenter = new TirePressureDetectionPresenter(new TirePressureDetectionModel().getInstance(getContext()));
         mTirePressureDetectionPresenter.attachView(this);
         return view;
     }
