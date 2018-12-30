@@ -12,7 +12,7 @@ public class TirePressureDetectionApplication extends Application{
         TirePressureDetectionApplication.mContext = getApplicationContext();
     }
 
-    public static Context getContext(){
+    public static Context getAppContext(){
         return TirePressureDetectionApplication.mContext;
     }
 }

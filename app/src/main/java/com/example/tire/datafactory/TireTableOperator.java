@@ -21,7 +21,7 @@ public class TireTableOperator {
     private static volatile TireTableOperator instance;
 
     private TireTableOperator() {
-        mContext = TirePressureDetectionApplication.getContext();
+        mContext = TirePressureDetectionApplication.getAppContext();
         resolver = mContext.getContentResolver();
     }
 
