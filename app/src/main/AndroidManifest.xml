@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.tire">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+
     <application
         android:name=".application.TirePressureDetectionApplication"
         android:allowBackup="true"
@@ -22,7 +24,7 @@
             android:name=".database.TireContentProvider"
             android:authorities="com.example.tire.provider" />
 
-        <service android:name=".datafactory.DataService"/>
+        <service android:name=".datafactory.DataService" />
 
     </application>
 
