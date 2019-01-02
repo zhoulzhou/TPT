@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FrameAnimationMainActivity extends AppCompatActivity {
-    private ImageView imageView;
+    private ImageView airconditionview;
+    private ImageView yellowview;
     AnimationsContainer.FramesSequenceAnimation animation;
 
     private AnimImageView mAnimationView_rear_electro_motor_yellow;
@@ -134,9 +135,11 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.frame_animation_layout);
 
-        imageView = (ImageView) findViewById(R.id.rear_electro_motor_id);
+        yellowview = (ImageView) findViewById(R.id.rear_electro_motor_id);
+        airconditionview = (ImageView) findViewById(R.id.air_condition);
 
         startAircondition();
+        startyellow();
     }
 
     private void startyellow(){
@@ -155,23 +158,23 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
         for (int i = 0; i < wind_level_drawable.length; ++i) {
             mResource_Aircondition.add(wind_level_drawable[i]);
         }
-        mAircondition.setAnimation(imageView,mResource_Aircondition,"aircondition");
+        mAircondition.setAnimation(airconditionview,mResource_Aircondition,"aircondition");
     }
 
     private void initRearElectroMotorYellow(){
         mAnimationView_rear_electro_motor_yellow = new AnimImageView();
-        mResourceIdList_rear_electro_motor_yellow = new ArrayList<Integer>();
+        mResourceIdList_rear_electro_motor_yellow = new ArrayList<Integer>(25);
         for (int i = 0; i < drawable_rear_electro_motor_yellow.length; ++i) {
             mResourceIdList_rear_electro_motor_yellow.add(drawable_rear_electro_motor_yellow[i]);
         }
-        mAnimationView_rear_electro_motor_yellow.setAnimation(imageView,mResourceIdList_rear_electro_motor_yellow,"rear electro motor yellow");
+        mAnimationView_rear_electro_motor_yellow.setAnimation(yellowview,mResourceIdList_rear_electro_motor_yellow,"rear electro motor yellow");
     }
 
     private void testFrameAnimation() {
-        if (animation == null) {
-            animation = AnimationsContainer.getInstance(R.array.loading_anim, 58).createProgressDialogAnim(imageView);
-            animation.start();
-        }
+//        if (animation == null) {
+//            animation = AnimationsContainer.getInstance(R.array.loading_anim, 58).createProgressDialogAnim(imageView);
+//            animation.start();
+//        }
     }
 
 }

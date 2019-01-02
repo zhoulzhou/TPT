@@ -26,6 +26,7 @@ public class AnimImageView {
     private boolean isLooping = false;
     private int total = 0;
     private String sStringID;
+    private Message mMessage;
 
     private Bitmap mReusableBitmap = null;
     private Bitmap mDisplayBitmap = null;
@@ -51,26 +52,18 @@ public class AnimImageView {
         mBitmapOptions.inMutable = true;
         try{
             mReusableBitmap = BitmapFactory.decodeResource(imageView.getResources(),resId, mBitmapOptions);
-            checkBitmapSize(mReusableBitmap);
         }catch (Exception e){
             e.printStackTrace();
         }
 
         mBitmapOptions.inBitmap = mReusableBitmap;
         mBitmapOptions.inSampleSize = 1;
-
-    }
-
-    private void checkBitmapSize(Bitmap bitmap){
-        float size = bitmap.getRowBytes() * bitmap.getHeight();
-        Log.d("AnimImageView","size= " + size);
     }
 
     private void setAnimationImage(ImageView imageView, int resId){
         if(mReusableBitmap != null){
             try{
                 mDisplayBitmap = BitmapFactory.decodeResource(imageView.getResources(),resId,mBitmapOptions);
-                checkBitmapSize(mDisplayBitmap);
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -122,17 +115,17 @@ public class AnimImageView {
                 return;
             }
             if (mFrameIndex < mResourceIdList.size()) {
-                Message msg = AnimHandler.obtainMessage(MSG_START, 0, 0, null);
-                msg.sendToTarget();
+                mMessage = AnimHandler.obtainMessage(MSG_START, 0, 0, null);
+                mMessage.sendToTarget();
             } else {
                 mFrameIndex = 0;
                 if (!isLooping) {
-                    Message msg = AnimHandler.obtainMessage(MSG_STOP, 0, 0, null);
-                    msg.sendToTarget();
+                    mMessage = AnimHandler.obtainMessage(MSG_STOP, 0, 0, null);
+                    mMessage.sendToTarget();
                     mState = STATE_STOP;
                 }else{
-                    Message msg = AnimHandler.obtainMessage(MSG_START, 0, 0, null);
-                    msg.sendToTarget();
+                    mMessage = AnimHandler.obtainMessage(MSG_START, 0, 0, null);
+                    mMessage.sendToTarget();
                 }
 
             }
