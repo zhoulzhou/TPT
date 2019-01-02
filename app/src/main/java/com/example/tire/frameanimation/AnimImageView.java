@@ -1,9 +1,7 @@
 package com.example.tire.frameanimation;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -32,7 +30,6 @@ public class AnimImageView {
     private Bitmap mReusableBitmap = null;
     private Bitmap mDisplayBitmap = null;
     private BitmapFactory.Options mBitmapOptions;
-    boolean mIsFirstSetAnimationImage = true;
 
     public AnimImageView() {
         mTimer = new Timer();

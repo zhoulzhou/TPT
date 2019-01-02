@@ -5,7 +5,7 @@
 
     <ImageView
         android:id="@+id/rear_electro_motor_id"
-        android:layout_width="225dp"
+        android:layout_width="724dp"
         android:layout_height="250dp"/>
 
 
