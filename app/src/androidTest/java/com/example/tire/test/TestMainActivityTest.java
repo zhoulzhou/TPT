@@ -28,16 +28,16 @@ public class TestMainActivityTest extends ActivityInstrumentationTestCase2<TestM
     @Test
     public void testcheckValue() {
         ArrayList<String> arrayList = new ArrayList<>(80);
-//        arrayList.add("panorama_getpanoramaonlinestate");
-//        arrayList.add("setting_gethomelighttime");
-//        arrayList.add("setting_getleavehomelighttime");
-//        arrayList.add("setting_getdriverseatback");
-//        arrayList.add("setting_getsteerback");
-//        arrayList.add("setting_getautolock");
-//        arrayList.add("setting_getremotecontrolupwindow");
-//        arrayList.add("setting_getlockupwindow");
-//        arrayList.add("setting_getremotecontroldownwindow");
-//        arrayList.add("setting_getlpswitchupwindow");
+        arrayList.add("panorama_getpanoramaonlinestate");
+        arrayList.add("setting_gethomelighttime");
+        arrayList.add("setting_getleavehomelighttime");
+        arrayList.add("setting_getdriverseatback");
+        arrayList.add("setting_getsteerback");
+        arrayList.add("setting_getautolock");
+        arrayList.add("setting_getremotecontrolupwindow");
+        arrayList.add("setting_getlockupwindow");
+        arrayList.add("setting_getremotecontroldownwindow");
+        arrayList.add("setting_getlpswitchupwindow");
 //        arrayList.add("setting_getlpswitchdownwindow");
 //        arrayList.add("bodywork_getautotype");
 //        arrayList.add("pm2p5_getpm2p5onlinestate");

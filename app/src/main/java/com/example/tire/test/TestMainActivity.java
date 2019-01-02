@@ -8,7 +8,9 @@ public class TestMainActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        checkValue("Bodywork.getAutoType>69 DB>0","Bodywork.getAutoType");
+        checkValue("Bodywork.getAutoType>69 DB>0","Bodywork.getAutoTypesstessggeeedfooooooosf");
+        checkValue("Bodywork.getAutoType>69 DB>0","Bodywork.getAutoType kkj");
+        checkValue("Bodywork.getAutoType","Bodywork.getAuto");
     }
 
     int resId;
