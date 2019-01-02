@@ -1,5 +1,9 @@
 package com.example.tire.frameanimation;
 
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -24,6 +28,12 @@ public class AnimImageView {
     private boolean isLooping = false;
     private int total = 0;
     private String sStringID;
+
+    private Bitmap mReusableBitmap = null;
+    private Bitmap mDisplayBitmap = null;
+    private BitmapFactory.Options mBitmapOptions;
+    boolean mIsFirstSetAnimationImage = true;
+
     public AnimImageView() {
         mTimer = new Timer();
     }
@@ -36,6 +46,48 @@ public class AnimImageView {
         mResourceIdList = resourceIdList;
         total = mResourceIdList.size();
         sStringID = stringId;
+        initReusableBitmap(mImageView, mResourceIdList.get(0));
+    }
+
+    private void initReusableBitmap(ImageView imageView, int resId){
+        mBitmapOptions = new BitmapFactory.Options();
+        mBitmapOptions.inMutable = true;
+        try{
+            mReusableBitmap = BitmapFactory.decodeResource(imageView.getResources(),resId, mBitmapOptions);
+            checkBitmapSize(mReusableBitmap);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        mBitmapOptions.inBitmap = mReusableBitmap;
+        mBitmapOptions.inSampleSize = 1;
+
+    }
+
+    private void checkBitmapSize(Bitmap bitmap){
+        float size = bitmap.getRowBytes() * bitmap.getHeight();
+        Log.d("AnimImageView","size= " + size);
+    }
+
+    private void setAnimationImage(ImageView imageView, int resId){
+        if(mReusableBitmap != null){
+            try{
+                mDisplayBitmap = BitmapFactory.decodeResource(imageView.getResources(),resId,mBitmapOptions);
+                checkBitmapSize(mDisplayBitmap);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            if(mDisplayBitmap != null){
+                imageView.setImageBitmap(mDisplayBitmap);
+            } else {
+                imageView.setImageResource(resId);
+                mReusableBitmap.recycle();
+                mReusableBitmap = null;
+            }
+        } else {
+            imageView.setImageResource(resId);
+        }
     }
 
     public void start(boolean loop, int duration) {
@@ -96,7 +148,8 @@ public class AnimImageView {
                 case MSG_START: {
                     if (mFrameIndex >= 0 && mFrameIndex < mResourceIdList.size() && mState == STATE_RUNNING) {
                         if(mImageView!=null){
-                            mImageView.setBackgroundResource(mResourceIdList.get(mFrameIndex));
+//                            mImageView.setBackgroundResource(mResourceIdList.get(mFrameIndex));
+                            setAnimationImage(mImageView,mResourceIdList.get(mFrameIndex));
                         }else{
                             if(DEBUG) Log.d(TAG, "mImageView ==null");
                         }
