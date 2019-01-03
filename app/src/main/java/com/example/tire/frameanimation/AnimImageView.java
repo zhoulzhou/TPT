@@ -32,8 +32,11 @@ public class AnimImageView {
     private Bitmap mDisplayBitmap = null;
     private BitmapFactory.Options mBitmapOptions;
 
+    private AnimationLRUCache mBitmapLRUCache;
+
     public AnimImageView() {
         mTimer = new Timer();
+        mBitmapLRUCache = new AnimationLRUCache(8);
     }
 
     public void setAnimation(ImageView imageview, List<Integer> resourceIdList, String stringId) {
@@ -62,10 +65,13 @@ public class AnimImageView {
 
     private void setAnimationImage(ImageView imageView, int resId){
         if(mReusableBitmap != null){
-            try{
-                mDisplayBitmap = BitmapFactory.decodeResource(imageView.getResources(),resId,mBitmapOptions);
-            }catch (Exception e){
-                e.printStackTrace();
+            mDisplayBitmap = mBitmapLRUCache.getBitmap(resId);
+            if(mDisplayBitmap == null){
+                try{
+                    mDisplayBitmap = BitmapFactory.decodeResource(imageView.getResources(),resId,mBitmapOptions);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
 
             if(mDisplayBitmap != null){
