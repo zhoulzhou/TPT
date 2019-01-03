@@ -6,6 +6,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.widget.ImageView;
+
+import com.example.tire.common.LogUtils;
+
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -36,7 +39,10 @@ public class AnimImageView {
 
     public AnimImageView() {
         mTimer = new Timer();
-        mBitmapLRUCache = new AnimationLRUCache(8);
+        int maxMemory = (int)(Runtime.getRuntime().maxMemory()); //单位kb
+        int cacheSize = maxMemory / 16;
+        if(DEBUG) Log.d(TAG, "AnimationLRUCache---cacheSize = " + cacheSize);
+        mBitmapLRUCache = new AnimationLRUCache(cacheSize);
     }
 
     public void setAnimation(ImageView imageview, List<Integer> resourceIdList, String stringId) {
@@ -66,9 +72,13 @@ public class AnimImageView {
     private void setAnimationImage(ImageView imageView, int resId){
         if(mReusableBitmap != null){
             mDisplayBitmap = mBitmapLRUCache.getBitmap(resId);
+            LogUtils.d("setAnimationImage getFromBitmapLRUCache mDisplayBitmap= " + mDisplayBitmap);
             if(mDisplayBitmap == null){
                 try{
                     mDisplayBitmap = BitmapFactory.decodeResource(imageView.getResources(),resId,mBitmapOptions);
+                    mBitmapLRUCache.put(resId,mDisplayBitmap);
+                    LogUtils.d("setAnimationImage decodeBitmap mDisplayBitmap= " + mDisplayBitmap);
+                    LogUtils.d("setAnimationImage addToCache resId= " + resId + " bitmap= " + mDisplayBitmap);
                 }catch (Exception e){
                     e.printStackTrace();
                 }

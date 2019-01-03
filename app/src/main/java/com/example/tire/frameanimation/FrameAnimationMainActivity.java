@@ -138,7 +138,7 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
         yellowview = (ImageView) findViewById(R.id.rear_electro_motor_id);
         airconditionview = (ImageView) findViewById(R.id.air_condition);
 
-        startAircondition();
+//        startAircondition();
         startyellow();
     }
 

@@ -9,15 +9,17 @@ import java.lang.ref.SoftReference;
 import java.util.LinkedHashMap;
 
 public class AnimationLRUCache extends LruCache {
-    private final int SOFT_CACHE_SIZE = 8; // 软引用缓存容量
     private LinkedHashMap mSoftBitmapCache;
 
     public AnimationLRUCache(int maxSize) {
         super(maxSize);
-        this.mSoftBitmapCache = new LinkedHashMap(SOFT_CACHE_SIZE, 0.75f, true){
+        final int softCacheMaxSize = maxSize;
+        LogUtils.d("AnimationLRUCache softCacheMaxSize= " + softCacheMaxSize);
+        this.mSoftBitmapCache = new LinkedHashMap(softCacheMaxSize, 0.75f, true){
             @Override
             protected boolean removeEldestEntry(Entry eldest) {
-                if(size() > SOFT_CACHE_SIZE){
+                LogUtils.d("AnimationLRUCache mSoftBitmapCache size()= " + size());
+                if(size() > softCacheMaxSize){
                     if(eldest != null){
                         SoftReference bitmapReference = (SoftReference) eldest.getValue();
                         if(bitmapReference != null){
@@ -37,6 +39,7 @@ public class AnimationLRUCache extends LruCache {
     public Bitmap getBitmap(int resId){
         Bitmap bitmap = (Bitmap) get(resId);
         if(bitmap != null){
+            LogUtils.d("AnimationLRUCache getBitmapFromHardCache bitmap= " + bitmap);
             return bitmap;
         }
 
@@ -48,6 +51,7 @@ public class AnimationLRUCache extends LruCache {
                     //移入硬缓存
                     put(resId,bitmap);
                     mSoftBitmapCache.remove(resId);
+                    LogUtils.d("AnimationLRUCache getBitmapFromSoftCache bitmap= " + bitmap);
                     return bitmap;
                 }else {
                     mSoftBitmapCache.remove(resId);
@@ -69,13 +73,15 @@ public class AnimationLRUCache extends LruCache {
             }
         }else {
             if(oldValue instanceof Bitmap){
-                recycleBitmap((Bitmap) oldValue);
+                LogUtils.d("AnimationLRUCache  evicted=false  bitmap= " + oldValue);
+//                recycleBitmap((Bitmap) oldValue);
             }
         }
     }
 
     @Override
     protected int sizeOf(Object key, Object value) {
+        LogUtils.d("AnimationLRUCache sizeOf size()= " + size());
         if(value != null){
             if(value instanceof Bitmap){
                 return getSizeInBytes((Bitmap) value);
@@ -95,7 +101,9 @@ public class AnimationLRUCache extends LruCache {
         if(oldValue != null){
             try{
                 LogUtils.d("AnimationLRUCache  recycleBitmap  bitmap= " + oldValue);
-                oldValue.recycle();
+                if(!oldValue.isRecycled()){
+                    oldValue.recycle();
+                }
             }catch (Exception e){
                 e.printStackTrace();
             }finally {
