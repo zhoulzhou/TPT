@@ -6,6 +6,8 @@ import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.util.LruCache;
 
+import com.example.tire.common.LogUtils;
+
 import java.lang.ref.SoftReference;
 import java.util.LinkedHashMap;
 
@@ -25,9 +27,18 @@ import java.util.LinkedHashMap;
 public class BitmapLRUCache extends LruCache {
     private final int SOFT_CACHE_SIZE = 10; // 软引用缓存容量
     private LinkedHashMap mSoftBitmapCache;//软引用缓存,已清理的数据可能会再次使用
+    private Drawable mCurBitmap;
+    private static BitmapLRUCache mInstance;
 
-    public BitmapLRUCache(int maxHardSize, final int maxSoftSize) {
+    public static void getInstance(int maxHardSize){
+        if(mInstance == null){
+            mInstance = new BitmapLRUCache(maxHardSize);
+        }
+    }
+
+    public BitmapLRUCache(int maxHardSize) {
         super(maxHardSize);
+        final int maxSoftSize = maxHardSize / 2;
         this.mSoftBitmapCache = new LinkedHashMap(maxSoftSize, 0.75f, true)
         {// true 采用LRU排序,移除队首
             @Override
@@ -37,6 +48,7 @@ public class BitmapLRUCache extends LruCache {
                     SoftReference bitmapReference = (SoftReference) eldest.getValue();
                     if (bitmapReference != null) {
                         Drawable oldValue = (Drawable) bitmapReference.get();
+                        LogUtils.d("BitmapLRUCache mSoftBitmapCache removeEldestEntry oldValue= " + oldValue);
                         recycleDrawable(oldValue);
                     }
                 }
@@ -47,21 +59,23 @@ public class BitmapLRUCache extends LruCache {
         } ;
     }
 
-    public Drawable getBitmap(String url) {
+    public Drawable getBitmap(int url) {
         // 先从硬缓存中获取
-        Drawable bitmap = (Drawable) get(url);
-        if (bitmap != null) {
-            return bitmap;
+        mCurBitmap = (Drawable) get(url);
+        if (mCurBitmap != null) {
+            LogUtils.d("BitmapLRUCache getBitmap HardCache bitmap= " + mCurBitmap);
+            return mCurBitmap;
         }
         synchronized (mSoftBitmapCache) {
             SoftReference bitmapReference = (SoftReference) mSoftBitmapCache.get(url);
             if (bitmapReference != null) {
-                bitmap = (Drawable) bitmapReference.get();
-                if (bitmap != null) {
+                mCurBitmap = (Drawable) bitmapReference.get();
+                if (mCurBitmap != null) {
                     //移入硬缓存
-                    put(url, bitmap);
+                    put(url, mCurBitmap);
                     mSoftBitmapCache.remove(url);
-                    return bitmap;
+                    LogUtils.d("BitmapLRUCache getBitmap SoftCache bitmap= " + mCurBitmap);
+                    return mCurBitmap;
                 } else {
                     mSoftBitmapCache.remove(url);
                 }
@@ -72,6 +86,7 @@ public class BitmapLRUCache extends LruCache {
 
     private int getSizeInBytes(Bitmap bitmap) {
         int size = bitmap.getRowBytes() * bitmap.getHeight();//每一行像素点所占用的字节数 *  高度
+        LogUtils.d("BitmapLRUCache getSizeInBytes size= " + size);
         return size;
     }
 
@@ -84,14 +99,17 @@ public class BitmapLRUCache extends LruCache {
                 synchronized (mSoftBitmapCache) {
                     mSoftBitmapCache.put(key, new SoftReference(oldValue));
                 }
+                LogUtils.d("BitmapLRUCache entryRemoved ToSoftCache oldValue= " + oldValue);
             }
         } else {//主动移除,回收无效空间
+            LogUtils.d("BitmapLRUCache entryRemoved  recycleDrawable= " + oldValue);
             recycleDrawable((Drawable) oldValue);
         }
     }
 
     @Override
     protected int sizeOf(Object key, Object value) {
+        LogUtils.d("BitmapLRUCache sizeOf  size= " + size());
         if (value != null) {
             if (value instanceof BitmapDrawable) {
                 Bitmap bitmap = ((BitmapDrawable) value).getBitmap();
@@ -111,9 +129,10 @@ public class BitmapLRUCache extends LruCache {
                     Bitmap bitmap = ((BitmapDrawable) oldValue).getBitmap();
                     bitmap.recycle();
                 }
-                Log.i("BitmapLRUCache", "oldValue：" + oldValue);
+                LogUtils.d("BitmapLRUCache recycleDrawable oldValue：" + oldValue);
             } catch (Exception exception) {
-                Log.i("BitmapLRUCache", "Failed to clear Bitmap images on close", exception);
+                exception.printStackTrace();
+                LogUtils.d("BitmapLRUCache recycleDrawable Failed to clear Bitmap images on close");
             } finally {
                 oldValue = null;
             }
