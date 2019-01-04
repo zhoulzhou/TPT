@@ -156,7 +156,7 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
     };
 
 
-    int number = 1000;
+    int number;
     Drawable[] drawableArray;
     Bitmap[] bitmapArray;
 
@@ -168,8 +168,10 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
         yellowview = (ImageView) findViewById(R.id.rear_electro_motor_id);
         airconditionview = (ImageView) findViewById(R.id.air_condition);
 
-        startAircondition();
+//        startAircondition();
 //        startyellow();
+        testDrawable();
+//        testBitmap();
     }
 
     private void startyellow(){
@@ -218,22 +220,28 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
 //        }
     }
 
-//    private void testDrawable(){
-//        drawableArray = new Drawable[number];
-//        for(int i=0; i<number; i++){
-//            LogUtils.d("测试第" + (i+1) + "张图片");
-//            drawableArray[i] = getResources().getDrawable(R.drawable.electric_wind_level_animation_00,null);
-//        }
-//    }
-//
+    private void testDrawable(){
+        number = 10000;
+        drawableArray = new Drawable[number];
+        for(int i=0; i<number; i++){
+            LogUtils.d("测试第" + (i+1) + "张图片");
+            long start = System.currentTimeMillis();
+            drawableArray[i] = getResources().getDrawable(R.drawable.electric_wind_level_animation_00,null);
+            airconditionview.setImageDrawable(drawableArray[i]);
+            long end = System.currentTimeMillis();
+            LogUtils.d("testDrawable getDrawable time= " + (end - start));
+        }
+    }
+
 //    private void testBitmap(){
+//        number = 1000;
 //        bitmapArray = new Bitmap[number];
 //        for (int i=0; i<number; i++){
 //            LogUtils.d("测试第" + (i+1) + "张图片");
 //            bitmapArray[i] = BitmapFactory.decodeResource(getResources(),R.drawable.electric_wind_level_animation_00);
 //        }
 //    }
-//
+
 //    private void testDecodeStream(){
 //        bitmapArray = new Bitmap[number];
 //        for(int i=0; i<number; i++){
