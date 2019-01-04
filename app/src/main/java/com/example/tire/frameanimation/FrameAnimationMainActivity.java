@@ -222,7 +222,7 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
     }
 
     private void testDrawable(){
-        number = 10000;
+        number = 1000000;
         drawableArray = new Drawable[number];
         for(int i=0; i<number; i++){
             LogUtils.d("测试第" + (i+1) + "张图片");
