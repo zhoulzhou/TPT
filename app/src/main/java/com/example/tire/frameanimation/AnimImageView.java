@@ -35,14 +35,14 @@ public class AnimImageView {
     private Bitmap mDisplayBitmap = null;
     private BitmapFactory.Options mBitmapOptions;
 
-    private AnimationLRUCache mBitmapLRUCache;
+//    private AnimationLRUCache mBitmapLRUCache;
 
     public AnimImageView() {
         mTimer = new Timer();
         int maxMemory = (int)(Runtime.getRuntime().maxMemory()); //单位kb
         int cacheSize = maxMemory / 16;
         if(DEBUG) Log.d(TAG, "AnimationLRUCache---cacheSize = " + cacheSize);
-        mBitmapLRUCache = new AnimationLRUCache(cacheSize);
+//        mBitmapLRUCache = new AnimationLRUCache(cacheSize);
     }
 
     public void setAnimation(ImageView imageview, List<Integer> resourceIdList, String stringId) {
@@ -53,7 +53,7 @@ public class AnimImageView {
         mResourceIdList = resourceIdList;
         total = mResourceIdList.size();
         sStringID = stringId;
-        initReusableBitmap(mImageView, mResourceIdList.get(0));
+//        initReusableBitmap(mImageView, mResourceIdList.get(0));
     }
 
     private void initReusableBitmap(ImageView imageView, int resId){
@@ -71,12 +71,12 @@ public class AnimImageView {
 
     private void setAnimationImage(ImageView imageView, int resId){
         if(mReusableBitmap != null){
-            mDisplayBitmap = mBitmapLRUCache.getBitmap(resId);
+//            mDisplayBitmap = mBitmapLRUCache.getBitmap(resId);
             LogUtils.d("setAnimationImage getFromBitmapLRUCache mDisplayBitmap= " + mDisplayBitmap);
             if(mDisplayBitmap == null){
                 try{
                     mDisplayBitmap = BitmapFactory.decodeResource(imageView.getResources(),resId,mBitmapOptions);
-                    mBitmapLRUCache.put(resId,mDisplayBitmap);
+//                    mBitmapLRUCache.put(resId,mDisplayBitmap);
                     LogUtils.d("setAnimationImage addToCache resId= " + resId + " bitmap= " + mDisplayBitmap);
                 }catch (Exception e){
                     e.printStackTrace();
@@ -153,8 +153,12 @@ public class AnimImageView {
                 case MSG_START: {
                     if (mFrameIndex >= 0 && mFrameIndex < mResourceIdList.size() && mState == STATE_RUNNING) {
                         if(mImageView!=null){
-//                            mImageView.setBackgroundResource(mResourceIdList.get(mFrameIndex));
-                            setAnimationImage(mImageView,mResourceIdList.get(mFrameIndex));
+                            long start= System.currentTimeMillis();
+                            LogUtils.d("AnimHandler addImage= " + mFrameIndex);
+                            mImageView.setBackgroundResource(mResourceIdList.get(mFrameIndex));
+//                            setAnimationImage(mImageView,mResourceIdList.get(mFrameIndex));
+                            long end= System.currentTimeMillis();
+                            LogUtils.d("AnimHandler animationTime= " + (end - start));
                         }else{
                             if(DEBUG) Log.d(TAG, "mImageView ==null");
                         }
