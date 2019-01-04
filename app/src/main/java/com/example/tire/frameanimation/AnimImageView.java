@@ -53,10 +53,13 @@ public class AnimImageView {
         mResourceIdList = resourceIdList;
         total = mResourceIdList.size();
         sStringID = stringId;
-//        initReusableBitmap(mImageView, mResourceIdList.get(0));
+
     }
 
     private void initReusableBitmap(ImageView imageView, int resId){
+        if(mReusableBitmap != null){
+            return ;
+        }
         mBitmapOptions = new BitmapFactory.Options();
         mBitmapOptions.inMutable = true;
         try{
@@ -73,7 +76,7 @@ public class AnimImageView {
         if(mReusableBitmap != null){
 //            mDisplayBitmap = mBitmapLRUCache.getBitmap(resId);
             LogUtils.d("setAnimationImage getFromBitmapLRUCache mDisplayBitmap= " + mDisplayBitmap);
-            if(mDisplayBitmap == null){
+//            if(mDisplayBitmap == null){
                 try{
                     mDisplayBitmap = BitmapFactory.decodeResource(imageView.getResources(),resId,mBitmapOptions);
 //                    mBitmapLRUCache.put(resId,mDisplayBitmap);
@@ -81,16 +84,19 @@ public class AnimImageView {
                 }catch (Exception e){
                     e.printStackTrace();
                 }
-            }
+//            }
 
             if(mDisplayBitmap != null){
+                LogUtils.d("setImageBitmap mDisplayBitmap= " + mDisplayBitmap);
                 imageView.setImageBitmap(mDisplayBitmap);
             } else {
+                LogUtils.d("setImageResource mDisplayBitmap = null " + resId);
                 imageView.setImageResource(resId);
                 mReusableBitmap.recycle();
                 mReusableBitmap = null;
             }
         } else {
+            LogUtils.d("setImageResource default= " + resId);
             imageView.setImageResource(resId);
         }
     }
@@ -100,6 +106,7 @@ public class AnimImageView {
         isLooping = loop;
         mFrameIndex = 0;
         mState = STATE_RUNNING;
+        initReusableBitmap(mImageView, mResourceIdList.get(0));
         if (mTimer != null){
             if (mTimeTask != null){
                 mTimeTask.cancel();
@@ -120,6 +127,9 @@ public class AnimImageView {
             mTimeTask.cancel();
             mTimeTask = null;
         }
+
+        mReusableBitmap = null;
+        mDisplayBitmap = null;
     }
 
     private class AnimTimerTask extends TimerTask {
@@ -155,8 +165,8 @@ public class AnimImageView {
                         if(mImageView!=null){
                             long start= System.currentTimeMillis();
                             LogUtils.d("AnimHandler addImage= " + mFrameIndex);
-                            mImageView.setBackgroundResource(mResourceIdList.get(mFrameIndex));
-//                            setAnimationImage(mImageView,mResourceIdList.get(mFrameIndex));
+//                            mImageView.setBackgroundResource(mResourceIdList.get(mFrameIndex));
+                            setAnimationImage(mImageView,mResourceIdList.get(mFrameIndex));
                             long end= System.currentTimeMillis();
                             LogUtils.d("AnimHandler animationTime= " + (end - start));
                         }else{
