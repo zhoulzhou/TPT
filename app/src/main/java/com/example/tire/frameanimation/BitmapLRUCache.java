@@ -30,10 +30,11 @@ public class BitmapLRUCache extends LruCache {
     private Drawable mCurBitmap;
     private static BitmapLRUCache mInstance;
 
-    public static void getInstance(int maxHardSize){
+    public static BitmapLRUCache getInstance(int maxHardSize){
         if(mInstance == null){
             mInstance = new BitmapLRUCache(maxHardSize);
         }
+        return mInstance;
     }
 
     public BitmapLRUCache(int maxHardSize) {
