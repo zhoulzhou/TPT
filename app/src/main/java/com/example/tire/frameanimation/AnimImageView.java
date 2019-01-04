@@ -2,6 +2,7 @@ package com.example.tire.frameanimation;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -35,14 +36,11 @@ public class AnimImageView {
     private Bitmap mDisplayBitmap = null;
     private BitmapFactory.Options mBitmapOptions;
 
-//    private AnimationLRUCache mBitmapLRUCache;
-
     public AnimImageView() {
         mTimer = new Timer();
         int maxMemory = (int)(Runtime.getRuntime().maxMemory()); //单位kb
         int cacheSize = maxMemory / 16;
         if(DEBUG) Log.d(TAG, "AnimationLRUCache---cacheSize = " + cacheSize);
-//        mBitmapLRUCache = new AnimationLRUCache(cacheSize);
     }
 
     public void setAnimation(ImageView imageview, List<Integer> resourceIdList, String stringId) {
@@ -74,17 +72,13 @@ public class AnimImageView {
 
     private void setAnimationImage(ImageView imageView, int resId){
         if(mReusableBitmap != null){
-//            mDisplayBitmap = mBitmapLRUCache.getBitmap(resId);
             LogUtils.d("setAnimationImage getFromBitmapLRUCache mDisplayBitmap= " + mDisplayBitmap);
-//            if(mDisplayBitmap == null){
                 try{
                     mDisplayBitmap = BitmapFactory.decodeResource(imageView.getResources(),resId,mBitmapOptions);
-//                    mBitmapLRUCache.put(resId,mDisplayBitmap);
                     LogUtils.d("setAnimationImage addToCache resId= " + resId + " bitmap= " + mDisplayBitmap);
                 }catch (Exception e){
                     e.printStackTrace();
                 }
-//            }
 
             if(mDisplayBitmap != null){
                 LogUtils.d("setImageBitmap mDisplayBitmap= " + mDisplayBitmap);
@@ -101,12 +95,23 @@ public class AnimImageView {
         }
     }
 
+    private Drawable drawable;
+    private void setImageByDrawable(ImageView imageView, int resId){
+        long start = System.currentTimeMillis();
+        drawable = imageView.getResources().getDrawable(resId,null);
+        long end = System.currentTimeMillis();
+        imageView.setImageDrawable(drawable);
+        long end1 = System.currentTimeMillis();
+        LogUtils.d("setImageByDrawable getDrawable time= " + (end - start));
+        LogUtils.d("setImageByDrawable setDrawable time= " + (end1 - end));
+    }
+
     public void start(boolean loop, int duration) {
         if(DEBUG) Log.d(TAG, "start total = " + total + "---sStringID = " + sStringID);
         isLooping = loop;
         mFrameIndex = 0;
         mState = STATE_RUNNING;
-        initReusableBitmap(mImageView, mResourceIdList.get(0));
+//        initReusableBitmap(mImageView, mResourceIdList.get(0));
         if (mTimer != null){
             if (mTimeTask != null){
                 mTimeTask.cancel();
@@ -166,7 +171,8 @@ public class AnimImageView {
                             long start= System.currentTimeMillis();
                             LogUtils.d("AnimHandler addImage= " + mFrameIndex);
 //                            mImageView.setBackgroundResource(mResourceIdList.get(mFrameIndex));
-                            setAnimationImage(mImageView,mResourceIdList.get(mFrameIndex));
+                            setImageByDrawable(mImageView,mResourceIdList.get(mFrameIndex));
+//                            setAnimationImage(mImageView,mResourceIdList.get(mFrameIndex));
                             long end= System.currentTimeMillis();
                             LogUtils.d("AnimHandler animationTime= " + (end - start));
                         }else{

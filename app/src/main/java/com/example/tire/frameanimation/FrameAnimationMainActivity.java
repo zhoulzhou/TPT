@@ -170,7 +170,8 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
 
 //        startAircondition();
 //        startyellow();
-        testDrawable();
+//        testDrawable();
+        testDrawable2();
 //        testBitmap();
 //        testDecodeStream();
     }
@@ -185,7 +186,7 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
         mAircondition.start(false,20);
     }
 
-    private void initAircondition(){
+    private void initAirconditionTest(){
         int size = 1000;
         int tatalSize = size * 100;
         int index ;
@@ -201,6 +202,15 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
 
             LogUtils.d("initAircondition index= " + index);
             mResource_Aircondition.add(wind_level_drawable[index]);
+        }
+        mAircondition.setAnimation(airconditionview,mResource_Aircondition,"aircondition");
+    }
+
+    private void initAircondition(){
+        mAircondition = new AnimImageView();
+        mResource_Aircondition = new ArrayList<Integer>(100);
+        for (int i = 0; i < wind_level_drawable.length; ++i) {
+            mResource_Aircondition.add(wind_level_drawable[i]);
         }
         mAircondition.setAnimation(airconditionview,mResource_Aircondition,"aircondition");
     }
@@ -222,13 +232,24 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
     }
 
     private void testDrawable(){
-        number = 1000000;
+        number = 10000;
         drawableArray = new Drawable[number];
         for(int i=0; i<number; i++){
             LogUtils.d("测试第" + (i+1) + "张图片");
             long start = System.currentTimeMillis();
             drawableArray[i] = getResources().getDrawable(R.drawable.electric_wind_level_animation_00,null);
             airconditionview.setImageDrawable(drawableArray[i]);
+            long end = System.currentTimeMillis();
+            LogUtils.d("testDrawable getDrawable time= " + (end - start));
+        }
+    }
+
+    private void testDrawable2(){
+        drawableArray = new Drawable[100];
+        for(int i=0; i<100; i++){
+            LogUtils.d("测试第" + (i+1) + "张图片");
+            long start = System.currentTimeMillis();
+            drawableArray[i] = getResources().getDrawable(wind_level_drawable[i],null);
             long end = System.currentTimeMillis();
             LogUtils.d("testDrawable getDrawable time= " + (end - start));
         }
