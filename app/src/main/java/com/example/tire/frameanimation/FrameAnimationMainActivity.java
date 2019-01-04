@@ -234,12 +234,12 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
 //        }
 //    }
 //
-    private void testDecodeStream(){
-        bitmapArray = new Bitmap[number];
-        for(int i=0; i<number; i++){
-            LogUtils.d("测试第" + (i+1) + "张图片");
-            bitmapArray[i] = BitmapFactory.decodeStream(getResources().openRawResource(+R.drawable.electric_wind_level_animation_00));
-        }
-    }
+//    private void testDecodeStream(){
+//        bitmapArray = new Bitmap[number];
+//        for(int i=0; i<number; i++){
+//            LogUtils.d("测试第" + (i+1) + "张图片");
+//            bitmapArray[i] = BitmapFactory.decodeStream(getResources().openRawResource(+R.drawable.electric_wind_level_animation_00));
+//        }
+//    }
 
 }
