@@ -170,9 +170,9 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
 
 //        startAircondition();
 //        startyellow();
-//        testDrawable();
+        testDrawable();
 //        testBitmap();
-        testDecodeStream();
+//        testDecodeStream();
     }
 
     private void startyellow(){
@@ -239,7 +239,10 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
         bitmapArray = new Bitmap[number];
         for (int i=0; i<number; i++){
             LogUtils.d("测试第" + (i+1) + "张图片");
+            long start = System.currentTimeMillis();
             bitmapArray[i] = BitmapFactory.decodeResource(getResources(),R.drawable.electric_wind_level_animation_00);
+            long end = System.currentTimeMillis();
+            LogUtils.d("testDrawable getDrawable time= " + (end - start));
         }
     }
 
@@ -248,7 +251,10 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
         bitmapArray = new Bitmap[number];
         for(int i=0; i<number; i++){
             LogUtils.d("测试第" + (i+1) + "张图片");
+            long start = System.currentTimeMillis();
             bitmapArray[i] = BitmapFactory.decodeStream(getResources().openRawResource(+R.drawable.electric_wind_level_animation_00));
+            long end = System.currentTimeMillis();
+            LogUtils.d("testDrawable getDrawable time= " + (end - start));
         }
     }
 
