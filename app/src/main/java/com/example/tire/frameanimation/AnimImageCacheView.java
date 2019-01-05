@@ -33,12 +33,14 @@ public class AnimImageCacheView {
     private Drawable mDisplayImage;
     private BitmapLRUCache mBitmapLRUCache;
 
+    private int mFrameCount;
+
     public AnimImageCacheView() {
         mTimer = new Timer();
-        int maxMemory = (int)(Runtime.getRuntime().maxMemory()); //单位kb
-        int cacheSize = maxMemory / 16;
-        if(DEBUG) Log.d(TAG, "AnimationLRUCache---cacheSize = " + cacheSize);
-        mBitmapLRUCache = new BitmapLRUCache(cacheSize);
+        int maxMemory = (int)(Runtime.getRuntime().maxMemory());
+        int cacheSize = maxMemory / 8;
+        LogUtils.d("AnimationLRUCache---cacheSize = " + cacheSize);
+        mBitmapLRUCache = BitmapLRUCache.getInstance(cacheSize);
     }
 
     public void setAnimation(ImageView imageview, List<Integer> resourceIdList, String stringId) {
@@ -49,12 +51,11 @@ public class AnimImageCacheView {
         mResourceIdList = resourceIdList;
         total = mResourceIdList.size();
         sStringID = stringId;
-
     }
 
     private void setAnimationImage(ImageView imageView, int resId){
-        mDisplayImage = (Drawable) mBitmapLRUCache.get(resId);
-
+        mDisplayImage = (Drawable) mBitmapLRUCache.getBitmap(resId);
+        LogUtils.d("setAnimationImage getFromCache resId= " + resId + " bitmap= " + mDisplayImage);
         if(mDisplayImage == null){
             try{
                 mDisplayImage = imageView.getResources().getDrawable(resId,null);
@@ -108,6 +109,8 @@ public class AnimImageCacheView {
                 Log.d(TAG,"run return");
                 return;
             }
+            mFrameCount++;
+            LogUtils.d("AnimTimerTask run mFrameCount= " + mFrameCount);
             if (mFrameIndex < mResourceIdList.size()) {
                 mMessage = AnimHandler.obtainMessage(MSG_START, 0, 0, null);
                 mMessage.sendToTarget();

@@ -21,6 +21,7 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
     AnimationsContainer.FramesSequenceAnimation animation;
 
     private AnimImageView mAnimationView_rear_electro_motor_yellow;
+    private AnimImageCacheView mYellowCacheView;
     private List<Integer> mResourceIdList_rear_electro_motor_yellow = null;
     private int[] drawable_rear_electro_motor_yellow = {
             R.drawable.rear_electro_motor_yellow_01,
@@ -51,6 +52,7 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
     };
 
     private AnimImageView mAircondition;
+    private AnimImageCacheView mAirconditionCacheView;
     private List<Integer> mResource_Aircondition = null;
     private int[] wind_level_drawable = {
             R.drawable.electric_wind_level_animation_00,
@@ -159,6 +161,8 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
     int number;
     Drawable[] drawableArray;
     Bitmap[] bitmapArray;
+    int mAirImageCount = 100;
+    int mYellowImageCount = 100;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -168,12 +172,14 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
         yellowview = (ImageView) findViewById(R.id.rear_electro_motor_id);
         airconditionview = (ImageView) findViewById(R.id.air_condition);
 
-//        startAircondition();
+        startAircondition();
 //        startyellow();
 //        testDrawable();
-        testDrawable2();
+//        testDrawable2();
 //        testBitmap();
 //        testDecodeStream();
+//        startAirconditionCache();
+//        startyellowCache();
     }
 
     private void startyellow(){
@@ -181,9 +187,19 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
         mAnimationView_rear_electro_motor_yellow.start(true,100);
     }
 
+    private void startyellowCache(){
+        initRearElectroMotorYellowCache();
+        mYellowCacheView.start(true,100);
+    }
+
+    private void startAirconditionCache(){
+        initAirconditionCache();
+        mAirconditionCacheView.start(true,100);
+    }
+
     private void startAircondition(){
         initAircondition();
-        mAircondition.start(false,20);
+        mAircondition.start(false,100);
     }
 
     private void initAirconditionTest(){
@@ -208,20 +224,38 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
 
     private void initAircondition(){
         mAircondition = new AnimImageView();
-        mResource_Aircondition = new ArrayList<Integer>(100);
-        for (int i = 0; i < wind_level_drawable.length; ++i) {
+        mResource_Aircondition = new ArrayList<Integer>(mAirImageCount);
+        for (int i = 0; i < mAirImageCount; ++i) {
             mResource_Aircondition.add(wind_level_drawable[i]);
         }
         mAircondition.setAnimation(airconditionview,mResource_Aircondition,"aircondition");
     }
 
+    private void initAirconditionCache(){
+        mAirconditionCacheView = new AnimImageCacheView();
+        mResource_Aircondition = new ArrayList<Integer>(mAirImageCount);
+        for (int i = 0; i < mAirImageCount; ++i) {
+            mResource_Aircondition.add(wind_level_drawable[i]);
+        }
+        mAirconditionCacheView.setAnimation(airconditionview,mResource_Aircondition,"aircondition");
+    }
+
     private void initRearElectroMotorYellow(){
         mAnimationView_rear_electro_motor_yellow = new AnimImageView();
-        mResourceIdList_rear_electro_motor_yellow = new ArrayList<Integer>(25);
-        for (int i = 0; i < drawable_rear_electro_motor_yellow.length; ++i) {
+        mResourceIdList_rear_electro_motor_yellow = new ArrayList<Integer>(mYellowImageCount);
+        for (int i = 0; i < mYellowImageCount; ++i) {
             mResourceIdList_rear_electro_motor_yellow.add(drawable_rear_electro_motor_yellow[i]);
         }
         mAnimationView_rear_electro_motor_yellow.setAnimation(yellowview,mResourceIdList_rear_electro_motor_yellow,"rear electro motor yellow");
+    }
+
+    private void initRearElectroMotorYellowCache(){
+        mYellowCacheView = new AnimImageCacheView();
+        mResourceIdList_rear_electro_motor_yellow = new ArrayList<Integer>(mYellowImageCount);
+        for (int i = 0; i < mYellowImageCount; ++i) {
+            mResourceIdList_rear_electro_motor_yellow.add(drawable_rear_electro_motor_yellow[i]);
+        }
+        mYellowCacheView.setAnimation(yellowview,mResourceIdList_rear_electro_motor_yellow,"rear electro motor yellow");
     }
 
     private void testFrameAnimation() {
@@ -280,4 +314,24 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        LogUtils.d("FrameAnimationMainActivity onPause");
+        if(mAircondition != null){
+            mAircondition.stop();
+        }
+        if(mAirconditionCacheView != null){
+            mAirconditionCacheView.stop();
+        }
+        if(mAnimationView_rear_electro_motor_yellow != null){
+            mAnimationView_rear_electro_motor_yellow.stop();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        LogUtils.d("FrameAnimationMainActivity onStop");
+    }
 }
