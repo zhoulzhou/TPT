@@ -250,7 +250,7 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
         for(int i=0; i<number; i++){
             LogUtils.d("测试第" + (i+1) + "张图片");
             long start = System.currentTimeMillis();
-            drawableArray[i] = getResources().getDrawable(wind_level_drawable[i],null);
+            drawableArray[i] = getResources().getDrawable(wind_level_drawable[i], null);
             long end = System.currentTimeMillis();
             LogUtils.d("testDrawable getDrawable time= " + (end - start));
         }
