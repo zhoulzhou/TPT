@@ -18,6 +18,7 @@ import java.util.List;
 public class FrameAnimationMainActivity extends AppCompatActivity {
     private ImageView airconditionview;
     private ImageView yellowview;
+    private ImageView redView;
     AnimationsContainer.FramesSequenceAnimation animation;
 
     private AnimImageView mAnimationView_rear_electro_motor_yellow;
@@ -49,6 +50,37 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
             R.drawable.rear_electro_motor_yellow_23,
             R.drawable.rear_electro_motor_yellow_24,
             R.drawable.rear_electro_motor_yellow_25
+    };
+
+    private AnimImageView mAnimationView_engine_red_green_to_battery;
+    private AnimImageCacheView mRedGreenView;
+    private List<Integer> mResourceIdList_engine_red_green_to_battery = null;
+    private int[] drawable_engine_red_green_to_battery = {
+            R.drawable.engine_red_green_to_battery_01,
+            R.drawable.engine_red_green_to_battery_02,
+            R.drawable.engine_red_green_to_battery_03,
+            R.drawable.engine_red_green_to_battery_04,
+            R.drawable.engine_red_green_to_battery_05,
+            R.drawable.engine_red_green_to_battery_06,
+            R.drawable.engine_red_green_to_battery_07,
+            R.drawable.engine_red_green_to_battery_08,
+            R.drawable.engine_red_green_to_battery_09,
+            R.drawable.engine_red_green_to_battery_10,
+            R.drawable.engine_red_green_to_battery_11,
+            R.drawable.engine_red_green_to_battery_12,
+            R.drawable.engine_red_green_to_battery_13,
+            R.drawable.engine_red_green_to_battery_14,
+            R.drawable.engine_red_green_to_battery_15,
+            R.drawable.engine_red_green_to_battery_16,
+            R.drawable.engine_red_green_to_battery_17,
+            R.drawable.engine_red_green_to_battery_18,
+            R.drawable.engine_red_green_to_battery_19,
+            R.drawable.engine_red_green_to_battery_20,
+            R.drawable.engine_red_green_to_battery_21,
+            R.drawable.engine_red_green_to_battery_22,
+            R.drawable.engine_red_green_to_battery_23,
+            R.drawable.engine_red_green_to_battery_24,
+            R.drawable.engine_red_green_to_battery_25
     };
 
     private AnimImageView mAircondition;
@@ -162,7 +194,7 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
     Drawable[] drawableArray;
     Bitmap[] bitmapArray;
     int mAirImageCount = 100;
-    int mYellowImageCount = 100;
+    int mYellowImageCount = 25;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -171,15 +203,18 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
 
         yellowview = (ImageView) findViewById(R.id.rear_electro_motor_id);
         airconditionview = (ImageView) findViewById(R.id.air_condition);
+        redView = (ImageView) findViewById(R.id.red_green_battery);
 
-        startAircondition();
+//        startAircondition();
 //        startyellow();
+//        startredGreen();
 //        testDrawable();
 //        testDrawable2();
 //        testBitmap();
 //        testDecodeStream();
 //        startAirconditionCache();
-//        startyellowCache();
+        startyellowCache();
+        startredGreenCache();
     }
 
     private void startyellow(){
@@ -199,7 +234,17 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
 
     private void startAircondition(){
         initAircondition();
-        mAircondition.start(false,100);
+        mAircondition.start(true,65);
+    }
+
+    private void startredGreen(){
+        initEngineRedGreenToBattery();
+        mAnimationView_engine_red_green_to_battery.start(true,100);
+    }
+
+    private void startredGreenCache(){
+        initEngineRedGreenToBatteryCache();
+        mRedGreenView.start(true,100);
     }
 
     private void initAirconditionTest(){
@@ -256,6 +301,24 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
             mResourceIdList_rear_electro_motor_yellow.add(drawable_rear_electro_motor_yellow[i]);
         }
         mYellowCacheView.setAnimation(yellowview,mResourceIdList_rear_electro_motor_yellow,"rear electro motor yellow");
+    }
+
+    private void initEngineRedGreenToBattery(){
+        mAnimationView_engine_red_green_to_battery = new AnimImageView();
+        mResourceIdList_engine_red_green_to_battery = new ArrayList<Integer>();
+        for (int i = 0; i < drawable_engine_red_green_to_battery.length; ++i) {
+            mResourceIdList_engine_red_green_to_battery.add(drawable_engine_red_green_to_battery[i]);
+        }
+        mAnimationView_engine_red_green_to_battery.setAnimation(redView,mResourceIdList_engine_red_green_to_battery,"engine red green to battery ");
+    }
+
+    private void initEngineRedGreenToBatteryCache(){
+        mRedGreenView = new AnimImageCacheView();
+        mResourceIdList_engine_red_green_to_battery = new ArrayList<Integer>();
+        for (int i = 0; i < drawable_engine_red_green_to_battery.length; ++i) {
+            mResourceIdList_engine_red_green_to_battery.add(drawable_engine_red_green_to_battery[i]);
+        }
+        mRedGreenView.setAnimation(redView,mResourceIdList_engine_red_green_to_battery,"engine red green to battery ");
     }
 
     private void testFrameAnimation() {

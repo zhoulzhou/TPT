@@ -38,14 +38,12 @@ public class AnimImageView {
 
     public AnimImageView() {
         mTimer = new Timer();
-        int maxMemory = (int)(Runtime.getRuntime().maxMemory()); //单位kb
-        int cacheSize = maxMemory / 16;
-        if(DEBUG) Log.d(TAG, "AnimationLRUCache---cacheSize = " + cacheSize);
+        LogUtils.d("AnimationLRUCache AnimImageViewInit ");
     }
 
     public void setAnimation(ImageView imageview, List<Integer> resourceIdList, String stringId) {
-        if(imageview==null){
-            if(DEBUG) Log.d(TAG, "setAnimation---stringId = " + stringId);
+        if (imageview == null) {
+            if (DEBUG) Log.d(TAG, "setAnimation---stringId = " + stringId);
         }
         mImageView = imageview;
         mResourceIdList = resourceIdList;
@@ -54,33 +52,33 @@ public class AnimImageView {
 
     }
 
-    private void initReusableBitmap(ImageView imageView, int resId){
-        if(mReusableBitmap != null){
-            return ;
+    private void initReusableBitmap(ImageView imageView, int resId) {
+        if (mReusableBitmap != null) {
+            return;
         }
         mBitmapOptions = new BitmapFactory.Options();
         mBitmapOptions.inMutable = true;
-        try{
-            mReusableBitmap = BitmapFactory.decodeResource(imageView.getResources(),resId, mBitmapOptions);
-        }catch (Exception e){
+        try {
+            mReusableBitmap = BitmapFactory.decodeResource(imageView.getResources(), resId, mBitmapOptions);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         mBitmapOptions.inBitmap = mReusableBitmap;
         mBitmapOptions.inSampleSize = 1;
+        LogUtils.d("initReusableBitmap mReusableBitmap= " + mReusableBitmap);
     }
 
-    private void setAnimationImage(ImageView imageView, int resId){
-        if(mReusableBitmap != null){
-            LogUtils.d("setAnimationImage getFromBitmapLRUCache mDisplayBitmap= " + mDisplayBitmap);
-                try{
-                    mDisplayBitmap = BitmapFactory.decodeResource(imageView.getResources(),resId,mBitmapOptions);
-                    LogUtils.d("setAnimationImage addToCache resId= " + resId + " bitmap= " + mDisplayBitmap);
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
+    private void setAnimationImage(ImageView imageView, int resId) {
+        if (mReusableBitmap != null) {
+            try {
+                mDisplayBitmap = BitmapFactory.decodeResource(imageView.getResources(), resId, mBitmapOptions);
+                LogUtils.d("setAnimationImage addToCache resId= " + resId + " bitmap= " + mDisplayBitmap);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-            if(mDisplayBitmap != null){
+            if (mDisplayBitmap != null) {
                 LogUtils.d("setImageBitmap mDisplayBitmap= " + mDisplayBitmap);
                 imageView.setImageBitmap(mDisplayBitmap);
             } else {
@@ -107,13 +105,13 @@ public class AnimImageView {
 //    }
 
     public void start(boolean loop, int duration) {
-        if(DEBUG) Log.d(TAG, "start total = " + total + "---sStringID = " + sStringID);
+        if (DEBUG) Log.d(TAG, "start total = " + total + "---sStringID = " + sStringID);
         isLooping = loop;
         mFrameIndex = 0;
         mState = STATE_RUNNING;
         initReusableBitmap(mImageView, mResourceIdList.get(0));
-        if (mTimer != null){
-            if (mTimeTask != null){
+        if (mTimer != null) {
+            if (mTimeTask != null) {
                 mTimeTask.cancel();
             }
             mTimeTask = new AnimTimerTask();
@@ -122,7 +120,7 @@ public class AnimImageView {
     }
 
     public void stop() {
-        if(DEBUG) Log.d(TAG, "stop total = " + total + "---sStringID = " + sStringID);
+        if (DEBUG) Log.d(TAG, "stop total = " + total + "---sStringID = " + sStringID);
         if (mTimeTask != null) {
             //只要停止动画，把UI刷成第一帧
             mImageView.setBackgroundResource(mResourceIdList.get(0));
@@ -141,7 +139,7 @@ public class AnimImageView {
         @Override
         public void run() {
             if (mFrameIndex < 0 || mState == STATE_STOP) {
-                Log.d(TAG,"run return");
+                Log.d(TAG, "run return");
                 return;
             }
             if (mFrameIndex < mResourceIdList.size()) {
@@ -153,7 +151,7 @@ public class AnimImageView {
                     mMessage = AnimHandler.obtainMessage(MSG_STOP, 0, 0, null);
                     mMessage.sendToTarget();
                     mState = STATE_STOP;
-                }else{
+                } else {
                     mMessage = AnimHandler.obtainMessage(MSG_START, 0, 0, null);
                     mMessage.sendToTarget();
                 }
@@ -167,16 +165,16 @@ public class AnimImageView {
             switch (msg.what) {
                 case MSG_START: {
                     if (mFrameIndex >= 0 && mFrameIndex < mResourceIdList.size() && mState == STATE_RUNNING) {
-                        if(mImageView!=null){
-                            long start= System.currentTimeMillis();
+                        if (mImageView != null) {
+                            long start = System.currentTimeMillis();
                             LogUtils.d("AnimHandler addImage= " + mFrameIndex);
 //                            mImageView.setBackgroundResource(mResourceIdList.get(mFrameIndex));
 //                            setImageByDrawable(mImageView,mResourceIdList.get(mFrameIndex));
-                            setAnimationImage(mImageView,mResourceIdList.get(mFrameIndex));
-                            long end= System.currentTimeMillis();
+                            setAnimationImage(mImageView, mResourceIdList.get(mFrameIndex));
+                            long end = System.currentTimeMillis();
                             LogUtils.d("AnimHandler animationTime= " + (end - start));
-                        }else{
-                            if(DEBUG) Log.d(TAG, "mImageView ==null");
+                        } else {
+                            if (DEBUG) Log.d(TAG, "mImageView ==null");
                         }
                         mFrameIndex++;
                     }

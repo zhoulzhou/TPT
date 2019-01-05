@@ -9,6 +9,13 @@
         android:id="@+id/rear_electro_motor_id"
         android:layout_width="225dp"
         android:layout_height="250dp"/>
+
+    <ImageView
+        android:id="@+id/red_green_battery"
+        android:layout_width="225dp"
+        android:layout_height="250dp"/>
+
+
     <ImageView
         android:id="@+id/air_condition"
         android:layout_width="724dp"
