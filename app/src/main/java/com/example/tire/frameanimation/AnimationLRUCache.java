@@ -9,17 +9,16 @@ import java.lang.ref.SoftReference;
 import java.util.LinkedHashMap;
 
 public class AnimationLRUCache extends LruCache {
+    private final int SOFT_CACHE_SIZE = 8; // 软引用缓存容量
     private LinkedHashMap mSoftBitmapCache;
 
     public AnimationLRUCache(int maxSize) {
         super(maxSize);
-        final int softCacheMaxSize = maxSize;
-        LogUtils.d("AnimationLRUCache softCacheMaxSize= " + softCacheMaxSize);
-        this.mSoftBitmapCache = new LinkedHashMap(softCacheMaxSize, 0.75f, true){
+        this.mSoftBitmapCache = new LinkedHashMap(SOFT_CACHE_SIZE, 0.75f, true){
             @Override
             protected boolean removeEldestEntry(Entry eldest) {
                 LogUtils.d("AnimationLRUCache mSoftBitmapCache size()= " + size());
-                if(size() > softCacheMaxSize){
+                if(size() > SOFT_CACHE_SIZE){
                     if(eldest != null){
                         SoftReference bitmapReference = (SoftReference) eldest.getValue();
                         if(bitmapReference != null){
