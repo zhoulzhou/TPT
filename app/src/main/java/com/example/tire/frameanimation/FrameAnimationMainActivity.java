@@ -214,7 +214,7 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
 //        testDecodeStream();
 //        startAirconditionCache();
         startyellowCache();
-        startredGreenCache();
+//        startredGreenCache();
     }
 
     private void startyellow(){
