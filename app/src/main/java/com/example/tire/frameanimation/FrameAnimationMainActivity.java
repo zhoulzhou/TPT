@@ -130,7 +130,29 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
             R.drawable.electric_wind_level_animation_74,
             R.drawable.electric_wind_level_animation_75,
             R.drawable.electric_wind_level_animation_76,
-            R.drawable.electric_wind_level_animation_77
+            R.drawable.electric_wind_level_animation_77,
+            R.drawable.electric_wind_level_animation_78,
+            R.drawable.electric_wind_level_animation_79,
+            R.drawable.electric_wind_level_animation_80,
+            R.drawable.electric_wind_level_animation_81,
+            R.drawable.electric_wind_level_animation_82,
+            R.drawable.electric_wind_level_animation_83,
+            R.drawable.electric_wind_level_animation_84,
+            R.drawable.electric_wind_level_animation_85,
+            R.drawable.electric_wind_level_animation_86,
+            R.drawable.electric_wind_level_animation_87,
+            R.drawable.electric_wind_level_animation_88,
+            R.drawable.electric_wind_level_animation_89,
+            R.drawable.electric_wind_level_animation_90,
+            R.drawable.electric_wind_level_animation_91,
+            R.drawable.electric_wind_level_animation_92,
+            R.drawable.electric_wind_level_animation_93,
+            R.drawable.electric_wind_level_animation_94,
+            R.drawable.electric_wind_level_animation_95,
+            R.drawable.electric_wind_level_animation_96,
+            R.drawable.electric_wind_level_animation_97,
+            R.drawable.electric_wind_level_animation_98,
+            R.drawable.electric_wind_level_animation_99
     };
 
 
@@ -228,12 +250,7 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
         for(int i=0; i<number; i++){
             LogUtils.d("测试第" + (i+1) + "张图片");
             long start = System.currentTimeMillis();
-            if(i<78){
-                drawableArray[i] = getResources().getDrawable(wind_level_drawable[i],null);
-            }else{
-                drawableArray[i] = getResources().getDrawable(drawable_rear_electro_motor_yellow[i-78],null);
-            }
-
+            drawableArray[i] = getResources().getDrawable(wind_level_drawable[i],null);
             long end = System.currentTimeMillis();
             LogUtils.d("testDrawable getDrawable time= " + (end - start));
         }
