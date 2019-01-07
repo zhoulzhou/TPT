@@ -84,7 +84,6 @@ public class AnimImageView {
             } else {
                 LogUtils.d("setImageResource mDisplayBitmap = null " + resId);
                 imageView.setImageResource(resId);
-                mReusableBitmap.recycle();
                 mReusableBitmap = null;
             }
         } else {
@@ -123,6 +122,7 @@ public class AnimImageView {
         if (DEBUG) Log.d(TAG, "stop total = " + total + "---sStringID = " + sStringID);
         if (mTimeTask != null) {
             //只要停止动画，把UI刷成第一帧
+            mImageView.setImageBitmap(null);
             mImageView.setBackgroundResource(mResourceIdList.get(0));
             mFrameIndex = 0;
             mState = STATE_STOP;
