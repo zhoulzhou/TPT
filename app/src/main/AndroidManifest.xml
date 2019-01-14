@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".frameanimation.FrameAnimationMainActivity">
+        <activity android:name=".test.TestMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
