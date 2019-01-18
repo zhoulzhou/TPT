@@ -17,6 +17,7 @@ import java.util.Map;
 public class SimpleLineChart extends View{
     private Paint mAxisPaint;
     private Paint mLinePaint;
+    private Paint mCirclePaint;
 
     private String[] mXAxisText = {"1","2","3","4","5"};
     private String[] mYAxisText = {"50K","40K","30K","20K","10K"};
@@ -37,9 +38,25 @@ public class SimpleLineChart extends View{
     }
 
     private void init(){
+        mPointMap.put(0,4);
+        mPointMap.put(1,3);
+        mPointMap.put(2,0);
+        mPointMap.put(3,1);
+        mPointMap.put(4,2);
+
         mAxisPaint = new Paint();
         mAxisPaint.setTextSize(mYAxisTextSize);
         mAxisPaint.setColor(Color.parseColor("#3F51B5"));
+
+        mLinePaint = new Paint();
+        mLinePaint.setAntiAlias(true);
+        mLinePaint.setColor(Color.GREEN);
+        mLinePaint.setStrokeWidth(6);
+
+        mCirclePaint = new Paint();
+        mCirclePaint.setAntiAlias(true);
+        mCirclePaint.setColor(Color.BLUE);
+        mCirclePaint.setStyle(Paint.Style.STROKE);
     }
 
     @Override
@@ -81,6 +98,8 @@ public class SimpleLineChart extends View{
         }
 
         drawYAxis(canvas);
+        drawXAxis(canvas);
+        drawCircleAndLine(canvas);
     }
 
     int[] yPoint;
@@ -108,9 +127,42 @@ public class SimpleLineChart extends View{
 
     int[] xPoint;
     int xInterval;
+    int xItemWidth;
     private void drawXAxis(Canvas canvas){
         xPoint = new int[mXAxisText.length];
 
+        //计算Y轴开始的原点坐标
+        xItemWidth = (int) mAxisPaint.measureText(mXAxisText[1]);
+
+        //X轴的偏移量
+        int xOffset = 50;
+
+        //计算X轴刻度的偏移量
+        xInterval = (mWidth - xOffset - xItemWidth)/(mXAxisText.length -1);
+        LogUtils.d("drawYAxis xInterval= " + xInterval);
+
+        //X轴刻度的Y坐标
+        int xItemY = mHeight;
+
+        for(int i=0; i<mXAxisText.length; i++){
+            int x= xOffset + xInterval*i;
+            LogUtils.d("drawYAxis x1= " + x);
+            canvas.drawText(mXAxisText[i],x,xItemY,mAxisPaint);
+            x = (int) (x + mAxisPaint.measureText(mXAxisText[i])/2);
+            xPoint[i] = x;
+            LogUtils.d("drawYAxis x2= " + x);
+        }
+
+    }
+
+    float circleRadius= 9;
+    private void drawCircleAndLine(Canvas canvas){
+        for(int i=0; i<mXAxisText.length; i++){
+            canvas.drawCircle(xPoint[i],yPoint[mPointMap.get(i)],circleRadius,mCirclePaint);
+            if(i>0){
+                canvas.drawLine(xPoint[i-1],yPoint[mPointMap.get(i-1)],xPoint[i],yPoint[mPointMap.get(i)],mLinePaint);
+            }
+        }
     }
 
     private void getTextSize(String str, Paint paint){
