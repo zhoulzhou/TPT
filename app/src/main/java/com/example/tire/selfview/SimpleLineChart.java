@@ -24,9 +24,6 @@ public class SimpleLineChart extends View{
     private int mXAxisTextSize = 30;
     private int mYAxisTextSize = 30;
 
-
-
-
     private Map<Integer,Integer> mPointMap = new HashMap<>();
     String mNoDataMsg = "无可显示的数据";
 
