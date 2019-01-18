@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -110,5 +111,13 @@ public class SimpleLineChart extends View{
     private void drawXAxis(Canvas canvas){
         xPoint = new int[mXAxisText.length];
 
+    }
+
+    private void getTextSize(String str, Paint paint){
+        Rect rect = new Rect();
+        paint.getTextBounds(str, 0, str.length(), rect);
+        int w = rect.width();
+        int h = rect.height();
+        LogUtils.d("w=" + w +"  h="+h);
     }
 }
