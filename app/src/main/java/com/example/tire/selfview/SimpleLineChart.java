@@ -152,7 +152,7 @@ public class SimpleLineChart extends View{
 
     }
 
-    float circleRadius= 9;
+    float circleRadius= 12;
     private void drawCircleAndLine(Canvas canvas){
         for(int i=0; i<mXAxisText.length; i++){
             canvas.drawCircle(xPoint[i],yPoint[mPointMap.get(i)],circleRadius,mCirclePaint);
