@@ -83,6 +83,7 @@ public class SimpleLineChart extends View{
 
     @Override
     protected void onDraw(Canvas canvas) {
+        LogUtils.d("onDrawTimes");
         super.onDraw(canvas);
         if(mXAxisText.length == 0 || mYAxisText.length == 0){
             throw new IllegalArgumentException("X or Y items is null");
@@ -155,6 +156,7 @@ public class SimpleLineChart extends View{
     float circleRadius= 12;
     private void drawCircleAndLine(Canvas canvas){
         for(int i=0; i<mXAxisText.length; i++){
+            LogUtils.d("drawCircleAndLine i= " + i);
             canvas.drawCircle(xPoint[i],yPoint[mPointMap.get(i)],circleRadius,mCirclePaint);
             if(i>0){
                 canvas.drawLine(xPoint[i-1],yPoint[mPointMap.get(i-1)],xPoint[i],yPoint[mPointMap.get(i)],mLinePaint);
