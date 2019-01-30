@@ -22,7 +22,8 @@ public class TestMainActivity extends AppCompatActivity{
         setContentView(R.layout.test_main_layout);
 
         mText = (TextView) findViewById(R.id.time_c);
-        setText2(1.5);
+        mText.setText("...");
+//        setText2(1.5);
     }
 
     private void setText1(double time){

@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="210dp"
-    android:layout_height="74dp"
-    android:orientation="horizontal"
-    android:background="@drawable/time_bg">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
 
+    <!--
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/blue"
         android:src="@drawable/time"/>
-
+    -->
     <TextView
         android:id="@+id/time_c"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="26dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/red"
+        android:textSize="10sp"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:background="@drawable/menu_item_number_bg"/>
 
 </LinearLayout>
