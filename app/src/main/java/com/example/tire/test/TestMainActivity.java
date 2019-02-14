@@ -13,6 +13,7 @@ import android.text.style.TextAppearanceSpan;
 import android.widget.TextView;
 
 import com.example.tire.R;
+import com.example.tire.common.LogUtils;
 
 public class TestMainActivity extends AppCompatActivity{
     TextView mText;
@@ -23,7 +24,25 @@ public class TestMainActivity extends AppCompatActivity{
 
         mText = (TextView) findViewById(R.id.time_c);
         mText.setText("...");
-//        setText2(1.5);
+        setText2(1.5);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        LogUtils.d("onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LogUtils.d("onResume");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LogUtils.d("onDestroy");
     }
 
     private void setText1(double time){
