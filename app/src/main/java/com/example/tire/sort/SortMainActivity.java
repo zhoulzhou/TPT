@@ -54,12 +54,11 @@ public class SortMainActivity extends AppCompatActivity {
             }
 
             swap(array, left, right);
-
             showArray(array);
         }
 
         swap(array, left, keyIndex);
-
+        showArray(array);
         return left;
     }
 
