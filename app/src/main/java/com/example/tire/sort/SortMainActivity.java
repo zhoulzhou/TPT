@@ -43,7 +43,7 @@ public class SortMainActivity extends AppCompatActivity {
      *
      */
     private int partSort(int[] array, int left, int right){
-        int keyIndex = right;//最好选用第一个 最后一个 中间的  三个中的中间值
+        int keyIndex = right;//最好选用（第一个 最后一个  中间的） 三个中的中间值
         int key = array[keyIndex];
         while(left < right){
             while(left < right && array[left] <= key){
