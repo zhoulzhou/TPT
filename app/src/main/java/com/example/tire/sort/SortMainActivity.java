@@ -20,7 +20,8 @@ public class SortMainActivity extends AppCompatActivity {
         mText = (TextView) findViewById(R.id.time_c);
         mText.setText("sort");
 
-        quitSort(mArray,0,9);
+//        quitSort(mArray,0,9);
+        bubbleSort(mArray);
     }
 
     private void quitSort(int[] array, int left, int right){
@@ -75,5 +76,22 @@ public class SortMainActivity extends AppCompatActivity {
             sb.append("  ");
         }
         LogUtils.d("array= " + sb.toString());
+    }
+
+    private void bubbleSort(int[] arry){
+        boolean isSwaped;
+        for(int i=0; i<arry.length-1; i++){
+            isSwaped = false;
+            for(int j=0; j<arry.length-1-i; j++){
+                if(arry[j] > arry[j+1]){
+                    swap(arry,j, j+1);
+                    isSwaped = true;
+                }
+                showArray(arry);
+            }
+            if(!isSwaped){
+                break;
+            }
+        }
     }
 }
