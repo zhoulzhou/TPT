@@ -11,6 +11,7 @@ import com.example.tire.common.LogUtils;
 public class SortMainActivity extends AppCompatActivity {
     TextView mText;
     int[] mArray = {4,1,7,6,9,2,8,0,3,5};
+    int[] mArrayA = {3,6,10,21,45,51,65,71,73,81,89,95,99};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -21,7 +22,8 @@ public class SortMainActivity extends AppCompatActivity {
         mText.setText("sort");
 
 //        quitSort(mArray,0,9);
-        bubbleSort(mArray);
+//        bubbleSort(mArray);
+        binarySearch(mArrayA, 81);
     }
 
     private void quitSort(int[] array, int left, int right){
@@ -93,5 +95,28 @@ public class SortMainActivity extends AppCompatActivity {
                 break;
             }
         }
+    }
+
+    private int binarySearch(int[] array, int key){
+        int low, high, mid;
+        low = 0;
+        high = array.length-1;
+        while(low < high){
+            mid = (low + high)/2;
+            LogUtils.d("mid= " + mid + " value= " + array[mid]);
+            if(array[mid] == key){
+                LogUtils.d("find mid= " + mid);
+                return mid;
+            }
+
+            if(array[mid] > key){
+                high = mid - 1;
+            }
+
+            if(array[mid] < key){
+                low = mid + 1;
+            }
+        }
+        return -1;
     }
 }
