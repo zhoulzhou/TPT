@@ -18,6 +18,8 @@ public class AnnotationTestActivity extends AppCompatActivity{
     private void testAnnotation(){
         Person person = new Person();
         Class<Person> c = Person.class;
+        //或者下面的方式获取class
+//        Class c = Class.forName("com.example.tire.annotation.Person");
         try {
             Method someBody = c.getMethod("someBody", new Class[]{String.class, int.class});
             someBody.invoke(person, new Object[]{"lily", 18});
