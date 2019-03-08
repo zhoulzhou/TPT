@@ -108,8 +108,15 @@ public class SlideVerifyView extends View {
         if(mIsSlidingCompleted){
             //画绿色的圆
             canvas.drawCircle(mViewWidth-mSlideWidth/2,mViewHeight/2,15,mBottomGreenPaint);
+
+           //画验证成功字样
             mTextPaint.setColor(Color.BLACK);
             canvas.drawText(mCompleteText,mViewWidth/2-mTextCompleteWidth/2,mViewHeight/2,mTextPaint);
+
+            //设置滑动完成监听
+            if(mSlideCompleteListener != null){
+                mSlideCompleteListener.slideComplete();
+            }
         }
     }
 
