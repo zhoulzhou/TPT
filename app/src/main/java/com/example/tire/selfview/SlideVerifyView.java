@@ -110,6 +110,7 @@ public class SlideVerifyView extends View {
                 case MotionEvent.ACTION_DOWN:
                     break;
                 case MotionEvent.ACTION_UP:
+                    //up时判断滑动不到最后要回到原点
                     if(mCurrentX < mViewWidth-mSlideWidth-10){
                         mCurrentX = 0;
                         mIsSliding = false;
@@ -117,7 +118,7 @@ public class SlideVerifyView extends View {
                         mCurrentX = mViewWidth-mSlideWidth;
                         mIsSliding = true;
                     }
-                    LogUtils.d("onTouchEvent ACTION_MOVE mCurrentX= " + mCurrentX);
+                    LogUtils.d("onTouchEvent ACTION_UP mCurrentX= " + mCurrentX);
                     invalidate();
                     break;
             }
