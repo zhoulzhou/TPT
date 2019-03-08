@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -31,6 +30,8 @@ public class SlideVerifyView extends View {
     private float mCurrentX;
     private boolean mIsSliding;
     private boolean mIsSlidingCompleted;
+
+    private SlideCompleteListener mSlideCompleteListener;
 
     public SlideVerifyView(Context context) {
         super(context);
@@ -95,7 +96,11 @@ public class SlideVerifyView extends View {
         // 根据滑块的坐标位置，画出白色滑块，滑块的坐标根据手触摸到屏幕上坐标位置计算
         canvas.drawRect(mCurrentX,0,mSlideWidth+mCurrentX,mViewHeight,mSlidePaint);
 
-        canvas.drawText(mHintText,mViewWidth/2-mTextHintWidth/2,mViewHeight/2,mTextPaint);
+        // 当滑块右侧位置滑动到提示字体左侧时去除掉（不再画出）提示字体
+        if(mCurrentX+mSlideWidth <= mViewWidth/2+mTextHintWidth/2){
+            canvas.drawText(mHintText,mViewWidth/2-mTextHintWidth/2,mViewHeight/2,mTextPaint);
+        }
+
 
         // 滑块滑向右侧的过程中，滑块左侧显示出绿色
         canvas.drawRect(0,0,mCurrentX,mViewHeight,mBottomGreenPaint);
@@ -146,5 +151,19 @@ public class SlideVerifyView extends View {
         }
         LogUtils.d("measureSize realSize= " + realSize);
         return realSize;
+    }
+
+    /**
+     * 声明接口是为了验证完成时进行回掉
+     */
+    public interface SlideCompleteListener{
+        void slideComplete();
+    }
+
+    /**
+     * 设置监听
+     */
+    public void setSlideCompleteListener(SlideCompleteListener slideCompleteListener){
+        mSlideCompleteListener = slideCompleteListener;
     }
 }
