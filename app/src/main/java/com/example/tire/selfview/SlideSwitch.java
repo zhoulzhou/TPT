@@ -19,6 +19,9 @@ public class SlideSwitch extends View {
 
     private Paint mBitmapPaint;
 
+    private float mSlide_left;
+    private boolean mIsOpen = false;
+
     public SlideSwitch(Context context) {
         super(context);
     }
@@ -31,6 +34,29 @@ public class SlideSwitch extends View {
     private void init(){
         mBackgroundBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.switch_background);
         mSlideBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.switch_slide);
+        mBitmapPaint = new Paint();
+        mBitmapPaint.setAntiAlias(true);
+
+        setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mIsOpen = !mIsOpen;
+                flushState();
+                flushView();
+            }
+        });
+    }
+
+    private void flushState(){
+        if(mIsOpen){
+            mSlide_left = mBackgroundBitmap.getWidth() - mSlideBitmap.getWidth();
+        }else{
+            mSlide_left = 0;
+        }
+    }
+
+    private void flushView(){
+        invalidate();
     }
 
     @Override
@@ -47,7 +73,7 @@ public class SlideSwitch extends View {
         super.onDraw(canvas);
 
         canvas.drawBitmap(mBackgroundBitmap,0,0,mBitmapPaint);
-        canvas.drawBitmap(mSlideBitmap,0,0,mBitmapPaint);
+        canvas.drawBitmap(mSlideBitmap,mSlide_left,0,mBitmapPaint);
     }
 
     private int measureSize(int measureSpec){
