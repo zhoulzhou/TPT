@@ -88,10 +88,17 @@ public class SlideVerifyView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        // 画出底部的灰色矩形背景
         canvas.drawRect(0,0,mViewWidth,mViewHeight,mBottomGrayPaint);
+
+        // 根据滑块的坐标位置，画出白色滑块，滑块的坐标根据手触摸到屏幕上坐标位置计算
         canvas.drawRect(mCurrentX,0,mSlideWidth+mCurrentX,mViewHeight,mSlidePaint);
 
         canvas.drawText(mHintText,mViewWidth/2-mTextHintWidth/2,mViewHeight/2,mTextPaint);
+
+        // 滑块滑向右侧的过程中，滑块左侧显示出绿色
+        canvas.drawRect(0,0,mCurrentX,mViewHeight,mBottomGreenPaint);
     }
 
     @Override
