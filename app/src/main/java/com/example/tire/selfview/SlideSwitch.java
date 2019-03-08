@@ -47,7 +47,7 @@ public class SlideSwitch extends View {
         super.onDraw(canvas);
 
         canvas.drawBitmap(mBackgroundBitmap,0,0,mBitmapPaint);
-
+        canvas.drawBitmap(mSlideBitmap,0,0,mBitmapPaint);
     }
 
     private int measureSize(int measureSpec){
