@@ -5,11 +5,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <!--
     <com.example.tire.selfview.SimpleLineChart
         android:layout_width="300dp"
         android:layout_height="200dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
         android:background="@color/colorAccent"/>
-
+-->
+    <com.example.tire.selfview.SlideVerifyView
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="50dp"/>
 </LinearLayout>
