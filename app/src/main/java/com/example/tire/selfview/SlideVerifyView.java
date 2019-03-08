@@ -101,9 +101,14 @@ public class SlideVerifyView extends View {
             canvas.drawText(mHintText,mViewWidth/2-mTextHintWidth/2,mViewHeight/2,mTextPaint);
         }
 
-
         // 滑块滑向右侧的过程中，滑块左侧显示出绿色
         canvas.drawRect(0,0,mCurrentX,mViewHeight,mBottomGreenPaint);
+
+        // 当滑块滑动到右侧时，画出滑块上的绿色圆环及验证成功字样
+        if(mIsSlidingCompleted){
+            //画绿色的圆
+            canvas.drawCircle(mViewWidth-mSlideWidth/2,mViewHeight/2,15,mBottomGreenPaint);
+        }
     }
 
     @Override
@@ -125,10 +130,10 @@ public class SlideVerifyView extends View {
                     //up时判断滑动不到最后要回到原点
                     if(mCurrentX < mViewWidth-mSlideWidth-10){
                         mCurrentX = 0;
-                        mIsSliding = false;
+                        mIsSlidingCompleted = false;
                     }else{
                         mCurrentX = mViewWidth-mSlideWidth;
-                        mIsSliding = true;
+                        mIsSlidingCompleted = true;
                     }
                     LogUtils.d("onTouchEvent ACTION_UP mCurrentX= " + mCurrentX);
                     invalidate();
