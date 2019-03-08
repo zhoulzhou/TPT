@@ -108,6 +108,8 @@ public class SlideVerifyView extends View {
         if(mIsSlidingCompleted){
             //画绿色的圆
             canvas.drawCircle(mViewWidth-mSlideWidth/2,mViewHeight/2,15,mBottomGreenPaint);
+            mTextPaint.setColor(Color.BLACK);
+            canvas.drawText(mCompleteText,mViewWidth/2-mTextCompleteWidth/2,mViewHeight/2,mTextPaint);
         }
     }
 
