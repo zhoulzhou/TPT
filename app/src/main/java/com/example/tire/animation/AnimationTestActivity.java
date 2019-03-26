@@ -1,5 +1,6 @@
 package com.example.tire.animation;
 
+import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -20,7 +21,8 @@ public class AnimationTestActivity extends AppCompatActivity {
         setContentView(R.layout.animation_test_layout);
         mView = findViewById(R.id.an_view);
 //        an1();
-        an2();
+//        an2();
+        an3();
     }
 
     private void an1(){
@@ -54,5 +56,11 @@ public class AnimationTestActivity extends AppCompatActivity {
             }
         });
         valueAnimator.start();
+    }
+
+    private void an3(){
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(mView,"alpha", 1,0,1);
+        objectAnimator.setDuration(3000);
+        objectAnimator.start();
     }
 }
