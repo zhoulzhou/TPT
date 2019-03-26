@@ -22,7 +22,8 @@ public class AnimationTestActivity extends AppCompatActivity {
         mView = findViewById(R.id.an_view);
 //        an1();
 //        an2();
-        an3();
+//        an3();
+        an4();
     }
 
     private void an1(){
@@ -60,6 +61,12 @@ public class AnimationTestActivity extends AppCompatActivity {
 
     private void an3(){
         ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(mView,"alpha", 1,0,1);
+        objectAnimator.setDuration(3000);
+        objectAnimator.start();
+    }
+
+    private void an4(){
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(mView,"rotation", 0,270,50);
         objectAnimator.setDuration(3000);
         objectAnimator.start();
     }
