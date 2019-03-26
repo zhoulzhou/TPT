@@ -23,7 +23,8 @@ public class AnimationTestActivity extends AppCompatActivity {
 //        an1();
 //        an2();
 //        an3();
-        an4();
+//        an4();
+        an5();
     }
 
     private void an1(){
@@ -67,6 +68,12 @@ public class AnimationTestActivity extends AppCompatActivity {
 
     private void an4(){
         ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(mView,"rotationX", 0,270,50);
+        objectAnimator.setDuration(3000);
+        objectAnimator.start();
+    }
+
+    private void an5(){
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(mView,"translationX", 0,200,-200,0);
         objectAnimator.setDuration(3000);
         objectAnimator.start();
     }
