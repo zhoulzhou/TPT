@@ -39,7 +39,6 @@ public class AnimationTestActivity extends AppCompatActivity {
      */
     private void an7(){
         ObjectAnimator objectAnimator = ObjectAnimator.ofInt(mSelfView,"circleRadius",40,600);
-        objectAnimator.setInterpolator(new BounceInterpolator());
         objectAnimator.setDuration(3000);
         objectAnimator.start();
     }
