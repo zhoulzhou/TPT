@@ -66,7 +66,7 @@ public class AnimationTestActivity extends AppCompatActivity {
     }
 
     private void an4(){
-        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(mView,"rotation", 0,270,50);
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(mView,"rotationX", 0,270,50);
         objectAnimator.setDuration(3000);
         objectAnimator.start();
     }
