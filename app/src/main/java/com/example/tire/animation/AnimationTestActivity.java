@@ -14,19 +14,34 @@ import com.example.tire.common.LogUtils;
 
 public class AnimationTestActivity extends AppCompatActivity {
     private View mView;
+    private CircleView mSelfView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.animation_test_layout);
         mView = findViewById(R.id.an_view);
+        mSelfView = (CircleView) findViewById(R.id.an_self_view);
 //        an1();
 //        an2();
 //        an3();
 //        an4();
 //        an5();
-        an6();
+//        an6();
+        an7();
 
+    }
+
+    /**
+     * 自定义ObjectAnimator的注意事项
+     1、拼接set函数：在拼接函数时，强制将属性的第一个字母大写，其他不变。例如alpha->setAlpha
+     2、确定函数的参数类型：使用ofFloat建立的，set函数中的参数也应该是float类型。
+     */
+    private void an7(){
+        ObjectAnimator objectAnimator = ObjectAnimator.ofInt(mSelfView,"circleRadius",40,600);
+        objectAnimator.setInterpolator(new BounceInterpolator());
+        objectAnimator.setDuration(3000);
+        objectAnimator.start();
     }
 
     private void an1(){
