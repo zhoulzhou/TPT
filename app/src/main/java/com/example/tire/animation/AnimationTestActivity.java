@@ -96,7 +96,7 @@ public class AnimationTestActivity extends AppCompatActivity {
     }
 
     private void an6(){
-        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(mView,"scaleX", 0,20,-200,10);
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(mView,"scaleX", 0,3,1);
         objectAnimator.setDuration(3000);
         objectAnimator.start();
     }
