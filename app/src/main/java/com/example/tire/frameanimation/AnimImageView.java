@@ -1,5 +1,6 @@
 package com.example.tire.frameanimation;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -160,6 +161,7 @@ public class AnimImageView {
         }
     }
 
+    @SuppressLint("HandlerLeak")
     private Handler AnimHandler = new Handler() {
         public void handleMessage(android.os.Message msg) {
             switch (msg.what) {
