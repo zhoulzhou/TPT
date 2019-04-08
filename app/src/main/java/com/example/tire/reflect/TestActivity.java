@@ -8,12 +8,14 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 
 public class TestActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        re1();
+//        re1();
+        re2();
     }
 
     private void re1(){
@@ -67,5 +69,13 @@ public class TestActivity extends AppCompatActivity{
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
         }
+    }
+
+    private void re2(){
+        Student si = new WangS();
+        MyInvocationHandler myInvocationHandler = new MyInvocationHandler(si);
+        Student s = (Student) Proxy.newProxyInstance(si.getClass().getClassLoader(),si.getClass().getInterfaces(), myInvocationHandler);
+        s.login();
+        s.submit();
     }
 }
