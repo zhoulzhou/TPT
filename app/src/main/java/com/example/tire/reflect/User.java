@@ -3,10 +3,12 @@ package com.example.tire.reflect;
 public class User {
     private String name;
     public int id;
+    private int age;
 
     public User(){
         name = "default";
         id = -1;
+        age = -2;
     }
 
     public User(int id){
@@ -36,7 +38,7 @@ public class User {
     }
 
     public String outInfo(){
-        return "id= " + id + " name= " + name;
+        return "id= " + id + " name= " + name + " age= " + age;
     }
 
     public void output(){
