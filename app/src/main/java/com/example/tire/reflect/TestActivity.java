@@ -72,10 +72,10 @@ public class TestActivity extends AppCompatActivity{
     }
 
     private void re2(){
-        Student si = new WangS();
-        MyInvocationHandler myInvocationHandler = new MyInvocationHandler(si);
-        Student s = (Student) Proxy.newProxyInstance(si.getClass().getClassLoader(),si.getClass().getInterfaces(), myInvocationHandler);
-        s.login();
-        s.submit();
+        Student target = new WangS();
+        MyInvocationHandler myInvocationHandler = new MyInvocationHandler(target);
+        Student proxy = (Student) Proxy.newProxyInstance(target.getClass().getClassLoader(),target.getClass().getInterfaces(), myInvocationHandler);
+        proxy.login();
+        proxy.submit();
     }
 }
