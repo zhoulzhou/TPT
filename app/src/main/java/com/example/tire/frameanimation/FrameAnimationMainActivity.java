@@ -25,168 +25,18 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
     private AnimImageCacheView mYellowCacheView;
     private List<Integer> mResourceIdList_rear_electro_motor_yellow = null;
     private int[] drawable_rear_electro_motor_yellow = {
-            R.drawable.rear_electro_motor_yellow_01,
-            R.drawable.rear_electro_motor_yellow_02,
-            R.drawable.rear_electro_motor_yellow_03,
-            R.drawable.rear_electro_motor_yellow_04,
-            R.drawable.rear_electro_motor_yellow_05,
-            R.drawable.rear_electro_motor_yellow_06,
-            R.drawable.rear_electro_motor_yellow_07,
-            R.drawable.rear_electro_motor_yellow_08,
-            R.drawable.rear_electro_motor_yellow_09,
-            R.drawable.rear_electro_motor_yellow_10,
-            R.drawable.rear_electro_motor_yellow_11,
-            R.drawable.rear_electro_motor_yellow_12,
-            R.drawable.rear_electro_motor_yellow_13,
-            R.drawable.rear_electro_motor_yellow_14,
-            R.drawable.rear_electro_motor_yellow_15,
-            R.drawable.rear_electro_motor_yellow_16,
-            R.drawable.rear_electro_motor_yellow_17,
-            R.drawable.rear_electro_motor_yellow_18,
-            R.drawable.rear_electro_motor_yellow_19,
-            R.drawable.rear_electro_motor_yellow_20,
-            R.drawable.rear_electro_motor_yellow_21,
-            R.drawable.rear_electro_motor_yellow_22,
-            R.drawable.rear_electro_motor_yellow_23,
-            R.drawable.rear_electro_motor_yellow_24,
-            R.drawable.rear_electro_motor_yellow_25
     };
 
     private AnimImageView mAnimationView_engine_red_green_to_battery;
     private AnimImageCacheView mRedGreenView;
     private List<Integer> mResourceIdList_engine_red_green_to_battery = null;
     private int[] drawable_engine_red_green_to_battery = {
-            R.drawable.engine_red_green_to_battery_01,
-            R.drawable.engine_red_green_to_battery_02,
-            R.drawable.engine_red_green_to_battery_03,
-            R.drawable.engine_red_green_to_battery_04,
-            R.drawable.engine_red_green_to_battery_05,
-            R.drawable.engine_red_green_to_battery_06,
-            R.drawable.engine_red_green_to_battery_07,
-            R.drawable.engine_red_green_to_battery_08,
-            R.drawable.engine_red_green_to_battery_09,
-            R.drawable.engine_red_green_to_battery_10,
-            R.drawable.engine_red_green_to_battery_11,
-            R.drawable.engine_red_green_to_battery_12,
-            R.drawable.engine_red_green_to_battery_13,
-            R.drawable.engine_red_green_to_battery_14,
-            R.drawable.engine_red_green_to_battery_15,
-            R.drawable.engine_red_green_to_battery_16,
-            R.drawable.engine_red_green_to_battery_17,
-            R.drawable.engine_red_green_to_battery_18,
-            R.drawable.engine_red_green_to_battery_19,
-            R.drawable.engine_red_green_to_battery_20,
-            R.drawable.engine_red_green_to_battery_21,
-            R.drawable.engine_red_green_to_battery_22,
-            R.drawable.engine_red_green_to_battery_23,
-            R.drawable.engine_red_green_to_battery_24,
-            R.drawable.engine_red_green_to_battery_25
     };
 
     private AnimImageView mAircondition;
     private AnimImageCacheView mAirconditionCacheView;
     private List<Integer> mResource_Aircondition = null;
     private int[] wind_level_drawable = {
-            R.drawable.electric_wind_level_animation_00,
-            R.drawable.electric_wind_level_animation_01,
-            R.drawable.electric_wind_level_animation_02,
-            R.drawable.electric_wind_level_animation_03,
-            R.drawable.electric_wind_level_animation_04,
-            R.drawable.electric_wind_level_animation_05,
-            R.drawable.electric_wind_level_animation_06,
-            R.drawable.electric_wind_level_animation_07,
-            R.drawable.electric_wind_level_animation_08,
-            R.drawable.electric_wind_level_animation_09,
-            R.drawable.electric_wind_level_animation_10,
-            R.drawable.electric_wind_level_animation_11,
-            R.drawable.electric_wind_level_animation_12,
-            R.drawable.electric_wind_level_animation_13,
-            R.drawable.electric_wind_level_animation_14,
-            R.drawable.electric_wind_level_animation_15,
-            R.drawable.electric_wind_level_animation_16,
-            R.drawable.electric_wind_level_animation_17,
-            R.drawable.electric_wind_level_animation_18,
-            R.drawable.electric_wind_level_animation_19,
-            R.drawable.electric_wind_level_animation_20,
-            R.drawable.electric_wind_level_animation_21,
-            R.drawable.electric_wind_level_animation_22,
-            R.drawable.electric_wind_level_animation_23,
-            R.drawable.electric_wind_level_animation_24,
-            R.drawable.electric_wind_level_animation_25,
-            R.drawable.electric_wind_level_animation_26,
-            R.drawable.electric_wind_level_animation_27,
-            R.drawable.electric_wind_level_animation_28,
-            R.drawable.electric_wind_level_animation_29,
-            R.drawable.electric_wind_level_animation_30,
-            R.drawable.electric_wind_level_animation_31,
-            R.drawable.electric_wind_level_animation_32,
-            R.drawable.electric_wind_level_animation_33,
-            R.drawable.electric_wind_level_animation_34,
-            R.drawable.electric_wind_level_animation_35,
-            R.drawable.electric_wind_level_animation_36,
-            R.drawable.electric_wind_level_animation_37,
-            R.drawable.electric_wind_level_animation_38,
-            R.drawable.electric_wind_level_animation_39,
-            R.drawable.electric_wind_level_animation_40,
-            R.drawable.electric_wind_level_animation_41,
-            R.drawable.electric_wind_level_animation_42,
-            R.drawable.electric_wind_level_animation_43,
-            R.drawable.electric_wind_level_animation_44,
-            R.drawable.electric_wind_level_animation_45,
-            R.drawable.electric_wind_level_animation_46,
-            R.drawable.electric_wind_level_animation_47,
-            R.drawable.electric_wind_level_animation_48,
-            R.drawable.electric_wind_level_animation_49,
-            R.drawable.electric_wind_level_animation_50,
-            R.drawable.electric_wind_level_animation_51,
-            R.drawable.electric_wind_level_animation_52,
-            R.drawable.electric_wind_level_animation_53,
-            R.drawable.electric_wind_level_animation_54,
-            R.drawable.electric_wind_level_animation_55,
-            R.drawable.electric_wind_level_animation_56,
-            R.drawable.electric_wind_level_animation_57,
-            R.drawable.electric_wind_level_animation_58,
-            R.drawable.electric_wind_level_animation_59,
-            R.drawable.electric_wind_level_animation_60,
-            R.drawable.electric_wind_level_animation_61,
-            R.drawable.electric_wind_level_animation_62,
-            R.drawable.electric_wind_level_animation_63,
-            R.drawable.electric_wind_level_animation_64,
-            R.drawable.electric_wind_level_animation_65,
-            R.drawable.electric_wind_level_animation_66,
-            R.drawable.electric_wind_level_animation_67,
-            R.drawable.electric_wind_level_animation_68,
-            R.drawable.electric_wind_level_animation_69,
-            R.drawable.electric_wind_level_animation_70,
-            R.drawable.electric_wind_level_animation_71,
-            R.drawable.electric_wind_level_animation_72,
-            R.drawable.electric_wind_level_animation_73,
-            R.drawable.electric_wind_level_animation_74,
-            R.drawable.electric_wind_level_animation_75,
-            R.drawable.electric_wind_level_animation_76,
-            R.drawable.electric_wind_level_animation_77,
-            R.drawable.electric_wind_level_animation_78,
-            R.drawable.electric_wind_level_animation_79,
-            R.drawable.electric_wind_level_animation_80,
-            R.drawable.electric_wind_level_animation_81,
-            R.drawable.electric_wind_level_animation_82,
-            R.drawable.electric_wind_level_animation_83,
-            R.drawable.electric_wind_level_animation_84,
-            R.drawable.electric_wind_level_animation_85,
-            R.drawable.electric_wind_level_animation_86,
-            R.drawable.electric_wind_level_animation_87,
-            R.drawable.electric_wind_level_animation_88,
-            R.drawable.electric_wind_level_animation_89,
-            R.drawable.electric_wind_level_animation_90,
-            R.drawable.electric_wind_level_animation_91,
-            R.drawable.electric_wind_level_animation_92,
-            R.drawable.electric_wind_level_animation_93,
-            R.drawable.electric_wind_level_animation_94,
-            R.drawable.electric_wind_level_animation_95,
-            R.drawable.electric_wind_level_animation_96,
-            R.drawable.electric_wind_level_animation_97,
-            R.drawable.electric_wind_level_animation_98,
-            R.drawable.electric_wind_level_animation_99
     };
 
 
@@ -334,7 +184,7 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
         for(int i=0; i<number; i++){
             LogUtils.d("测试第" + (i+1) + "张图片");
             long start = System.currentTimeMillis();
-            drawableArray[i] = getResources().getDrawable(R.drawable.electric_wind_level_animation_00,null);
+//            drawableArray[i] = getResources().getDrawable(,null);
             airconditionview.setImageDrawable(drawableArray[i]);
             long end = System.currentTimeMillis();
             LogUtils.d("testDrawable getDrawable time= " + (end - start));
@@ -359,7 +209,7 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
         for (int i=0; i<number; i++){
             LogUtils.d("测试第" + (i+1) + "张图片");
             long start = System.currentTimeMillis();
-            bitmapArray[i] = BitmapFactory.decodeResource(getResources(),R.drawable.electric_wind_level_animation_00);
+//            bitmapArray[i] = BitmapFactory.decodeResource(getResources(),R.drawable.);
             long end = System.currentTimeMillis();
             LogUtils.d("testDrawable getDrawable time= " + (end - start));
         }
@@ -371,7 +221,7 @@ public class FrameAnimationMainActivity extends AppCompatActivity {
         for(int i=0; i<number; i++){
             LogUtils.d("测试第" + (i+1) + "张图片");
             long start = System.currentTimeMillis();
-            bitmapArray[i] = BitmapFactory.decodeStream(getResources().openRawResource(+R.drawable.electric_wind_level_animation_00));
+//            bitmapArray[i] = BitmapFactory.decodeStream(getResources().openRawResource(+R.drawable.));
             long end = System.currentTimeMillis();
             LogUtils.d("testDrawable getDrawable time= " + (end - start));
         }
