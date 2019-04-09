@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 
 public class TestMainActivityTest extends ActivityInstrumentationTestCase2<TestMainActivity> {
 
-    private TestMainActivity testMainActivity;
+    private TestMasinActivity testMainActivity;
 
     public TestMainActivityTest() {
         super(TestMainActivity.class);
@@ -28,7 +28,7 @@ public class TestMainActivityTest extends ActivityInstrumentationTestCase2<TestM
     @Test
     public void testcheckValue() {
         ArrayList<String> arrayList = new ArrayList<>(80);
-        arrayList.add("panorama_getpanoramaonlinestate");
+        arrayList.add("tate");
 
         for(int i=0; i<arrayList.size();i++){
             String source = arrayList.get(i);

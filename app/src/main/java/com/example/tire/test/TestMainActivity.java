@@ -88,7 +88,7 @@ public class TestMainActivity extends AppCompatActivity{
     }
 
     private void testCheckValue(){
-        checkValue("Bodywork.getAuto>69 DB>0","work.getAutesstessggeeedfooooooosf");
+        checkValue("work","Bodywork");
     }
 
     int resId;
