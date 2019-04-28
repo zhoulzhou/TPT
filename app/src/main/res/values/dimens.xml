@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="line_chart_left_right_blank">50dp</dimen>
+    <dimen name="line_chart_top_margin">1dp</dimen>
+    <dimen name="line_chart_bottom_margin">40dp</dimen>
+    <dimen name="line_chart_more_line_end">10dp</dimen>
+    <dimen name="line_chart_text_size_normal">14dp</dimen>
+    <dimen name="line_chart_text_size_no_data">15dp</dimen>
+    <dimen name="line_chart_axis_text_size_normal">14sp</dimen>
+    <dimen name="line_chart_axis_text_offset">1dp</dimen>
+    <dimen name="line_chart_deviation_value">13dp</dimen>
+    <dimen name="line_chart_bottom_text_margin_bottom">10dp</dimen>
+    <dimen name="line_chart_bottom_text_margin_left_right">10dp</dimen>
+</resources>

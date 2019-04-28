@@ -6,4 +6,13 @@
 
     <color name="blue">#3F51B5</color>
     <color name="red">#FF4081</color>
+
+    <color name="fuel_consume_color">#81b5ff</color>
+    <color name="elec_consume_color">#ffea99</color>
+    <color name="fuel_consume_text_color">#81b2ff</color>
+    <color name="elec_consume_text_color">#ffec95</color>
+
+    <color name="text_color_yellow_light">#fff3d8</color>
+    <color name="text_color_yellow_dark">#ffea99</color>
+    <color name="text_color_blue_light">#81b5ff</color>
 </resources>
