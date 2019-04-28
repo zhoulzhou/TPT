@@ -127,11 +127,11 @@ public class LineChartView extends View {
             drawVerticalAxisText(canvas);
             drawValues(canvas);
         } else {
-            drawHorizontalLine(canvas);
-            drawVerticalAxisLine(canvas);
-            drawVerticalAxisText(canvas);
-            drawFuelAxisText(canvas);
-            drawEleclAxisText(canvas);
+//            drawHorizontalLine(canvas);
+//            drawVerticalAxisLine(canvas);
+//            drawVerticalAxisText(canvas);
+//            drawFuelAxisText(canvas);
+//            drawEleclAxisText(canvas);
             drawNoData(canvas);
         }
     }
