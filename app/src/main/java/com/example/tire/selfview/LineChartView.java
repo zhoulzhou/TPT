@@ -11,6 +11,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.example.tire.R;
+import com.example.tire.common.LogUtils;
 
 import java.text.DecimalFormat;
 
@@ -127,21 +128,22 @@ public class LineChartView extends View {
             drawVerticalAxisText(canvas);
             drawValues(canvas);
         } else {
-//            drawHorizontalLine(canvas);
-//            drawVerticalAxisLine(canvas);
-//            drawVerticalAxisText(canvas);
-//            drawFuelAxisText(canvas);
-//            drawEleclAxisText(canvas);
+            drawHorizontalLine(canvas);
+            drawVerticalAxisLine(canvas);
+            drawVerticalAxisText(canvas);
+            drawFuelAxisText(canvas);
+            drawEleclAxisText(canvas);
             drawNoData(canvas);
         }
     }
 
     private void drawNoData(Canvas canvas) {
+        LogUtils.d("drawNoData");
         Paint noDataTextPaint = new Paint();
         noDataTextPaint.setTextAlign(Paint.Align.CENTER);
         noDataTextPaint.setStyle(Paint.Style.FILL);
         noDataTextPaint.setColor(mContext.getResources().getColor(
-                android.R.color.white));
+                android.R.color.black));
         noDataTextPaint.setAntiAlias(true);
         noDataTextPaint.setTextSize(getResources().getDimensionPixelSize(R.dimen.line_chart_text_size_no_data));
         canvas.drawText(mContext.getResources().getString(R.string.travelinfo_no_point_data), mViewWidth / 2,
@@ -150,10 +152,11 @@ public class LineChartView extends View {
 
     private void drawHorizontalLine(Canvas canvas) {
         // 画横坐标
+        LogUtils.d("drawHorizontalLine");
         Paint alphaLinePaint = new Paint();// Paint the translucent lines
         alphaLinePaint.setStyle(Paint.Style.FILL);
         alphaLinePaint.setColor(mContext.getResources().getColor(
-                android.R.color.white, null));
+                android.R.color.holo_blue_bright, null));
         alphaLinePaint.setAntiAlias(true);
         alphaLinePaint.setAlpha(150);
         for (int i = 1; i < 9; i++) {
@@ -164,6 +167,7 @@ public class LineChartView extends View {
     }
 
     private void drawVerticalAxisLine(Canvas canvas){
+        LogUtils.d("drawVerticalAxisLine");
         // 画竖坐标的线
         Paint gradientWhiteLine = new Paint();
         LinearGradient backGradient = new LinearGradient(mLeftRightBlank, mTopMargin,
@@ -196,6 +200,7 @@ public class LineChartView extends View {
 
     private void drawVerticalAxisText(Canvas canvas) {
         // 画竖坐标的数字
+        LogUtils.d("drawVerticalAxisText");
         int offset = mContext.getResources().getDimensionPixelSize(R.dimen.line_chart_axis_text_offset);
         for (int i = 0; i < mFuelAxis.length; i++) {
             if (mPowerType == PWOER_TYPE_HEV) {
@@ -334,6 +339,7 @@ public class LineChartView extends View {
     }
 
     private void drawFuelAxisText(Canvas canvas) {
+        LogUtils.d("drawFuelAxisText");
         Paint fuelTextPaint = new Paint();
         fuelTextPaint.setTextAlign(Paint.Align.LEFT);
         fuelTextPaint.setStyle(Paint.Style.FILL);
@@ -345,6 +351,7 @@ public class LineChartView extends View {
     }
 
     private void drawEleclAxisText(Canvas canvas) {
+        LogUtils.d("drawEleclAxisText");
         Paint elecTextPaint = new Paint();
         elecTextPaint.setTextAlign(Paint.Align.RIGHT);
         elecTextPaint.setStyle(Paint.Style.FILL);
