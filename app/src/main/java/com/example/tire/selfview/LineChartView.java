@@ -138,6 +138,7 @@ public class LineChartView extends View {
         }
     }
 
+    //应该使用全局变量
     Paint noDataTextPaint = new Paint();;
     private void drawNoData(Canvas canvas) {
         LogUtils.d("drawNoData");
