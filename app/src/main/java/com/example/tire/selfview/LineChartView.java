@@ -114,7 +114,8 @@ public class LineChartView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        android.util.Log.d(TAG, "mFuelPointValue = " + mFuelPointValue.length + " mElecPointValue=" + mElecPointValue.length);
+        LogUtils.d("onDraw");
+        android.util.Log.d(TAG, "onDraw mFuelPointValue = " + mFuelPointValue.length + " mElecPointValue=" + mElecPointValue.length);
         if (mFuelPointValue.length != 0 && mElecPointValue.length != 0) {
             mBarSpace = (((mViewWidth - mLeftRightBlank * 2 - 2 * deviationValue) / (mPointNumber - 1)) / 5) * 4;
             mTopMargin = getResources().getDimensionPixelSize(R.dimen.line_chart_top_margin);
@@ -128,24 +129,26 @@ public class LineChartView extends View {
             drawVerticalAxisText(canvas);
             drawValues(canvas);
         } else {
-            drawHorizontalLine(canvas);
-            drawVerticalAxisLine(canvas);
-            drawVerticalAxisText(canvas);
-            drawFuelAxisText(canvas);
-            drawEleclAxisText(canvas);
+//            drawHorizontalLine(canvas);
+//            drawVerticalAxisLine(canvas);
+//            drawVerticalAxisText(canvas);
+//            drawFuelAxisText(canvas);
+//            drawEleclAxisText(canvas);
             drawNoData(canvas);
         }
     }
 
+    Paint noDataTextPaint = new Paint();;
     private void drawNoData(Canvas canvas) {
         LogUtils.d("drawNoData");
-        Paint noDataTextPaint = new Paint();
+
         noDataTextPaint.setTextAlign(Paint.Align.CENTER);
         noDataTextPaint.setStyle(Paint.Style.FILL);
         noDataTextPaint.setColor(mContext.getResources().getColor(
                 android.R.color.black));
         noDataTextPaint.setAntiAlias(true);
         noDataTextPaint.setTextSize(getResources().getDimensionPixelSize(R.dimen.line_chart_text_size_no_data));
+        LogUtils.d("drawNoData noDataTextPaint " + noDataTextPaint.toString());
         canvas.drawText(mContext.getResources().getString(R.string.travelinfo_no_point_data), mViewWidth / 2,
                 (mTopMargin + mViewHeight - mBottomMargin) / 2, noDataTextPaint);
     }
