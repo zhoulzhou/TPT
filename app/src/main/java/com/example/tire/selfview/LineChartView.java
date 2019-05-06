@@ -23,11 +23,6 @@ public class LineChartView extends View {
     private int mViewHeight;// 高
     private int mLeftRightBlank;
     private int mBottomMargin;
-    private int mMoreLineEnd;
-
-    private int deviationValue;
-    private int mBottomTextMarginBottom;
-    private int mBottomTextMarginLeftRight;
 
     public void setData() {
         invalidate();
