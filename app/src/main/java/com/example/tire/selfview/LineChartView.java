@@ -76,12 +76,12 @@ public class LineChartView extends View {
         Paint alphaLinePaint = new Paint();// Paint the translucent lines
         alphaLinePaint.setStyle(Paint.Style.FILL);
         alphaLinePaint.setColor(mContext.getResources().getColor(
-                R.color.text_color_yellow_dark, null));
+                R.color.red, null));
         alphaLinePaint.setAntiAlias(true);
         alphaLinePaint.setAlpha(150);
         for (int i = 1; i < 9; i++) {
-            canvas.drawLine(mLeftRightBlank , (mViewHeight - mBottomMargin) * i / 8, mViewWidth - mLeftRightBlank,
-                    (mViewHeight - mBottomMargin) * i / 8, alphaLinePaint);
+            canvas.drawLine(mLeftRightBlank , (mViewHeight - mBottomMargin) * i / 8,
+                    mViewWidth - mLeftRightBlank, (mViewHeight - mBottomMargin) * i / 8, alphaLinePaint);
         }
 
     }
