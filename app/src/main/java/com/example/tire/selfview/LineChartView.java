@@ -87,14 +87,14 @@ public class LineChartView extends View {
     }
 
 
-    private static int getTextWidth(String displayText) {
+    private int getTextWidth(String displayText) {
         Paint textPaint = new Paint();
         Rect rect = new Rect();
         textPaint.getTextBounds(displayText, 0, 1, rect);
         return rect.width();
     }
 
-    private static int getTextHeight(String displayText) {
+    private int getTextHeight(String displayText) {
         Paint textPaint = new Paint();
         Rect rect = new Rect();
         textPaint.getTextBounds(displayText, 0, 1, rect);
