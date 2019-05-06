@@ -4,7 +4,5 @@
     <string name="temperature_text"><xliff:g id="temperature" >%1$.1f</xliff:g> °C</string>
 
     <string name="travelinfo_no_point_data">No data</string>
-    <string name="travelinfo_average_50_fuel">Average Fuel Consumption</string>
-    <string name="travelinfo_average_50_elec">Average Electricity Consumption</string>
 
 </resources>

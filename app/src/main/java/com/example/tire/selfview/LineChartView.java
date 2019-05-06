@@ -76,7 +76,7 @@ public class LineChartView extends View {
         Paint alphaLinePaint = new Paint();// Paint the translucent lines
         alphaLinePaint.setStyle(Paint.Style.FILL);
         alphaLinePaint.setColor(mContext.getResources().getColor(
-                android.R.color.holo_blue_bright, null));
+                R.color.text_color_yellow_dark, null));
         alphaLinePaint.setAntiAlias(true);
         alphaLinePaint.setAlpha(150);
         for (int i = 1; i < 9; i++) {
