@@ -1,5 +1,6 @@
 package com.example.tire.selfview;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -18,12 +19,13 @@ public class SelfViewActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.self_view_activity_layout);
-        lineChartView = (LineChartView) findViewById(R.id.line_chart);
-        lineChartView.setData();
-
-        mHandler.sendEmptyMessageDelayed(MSG_UPDATE,3000);
+//        lineChartView = (LineChartView) findViewById(R.id.line_chart);
+//        lineChartView.setData();
+//
+//        mHandler.sendEmptyMessageDelayed(MSG_UPDATE,3000);
     }
 
+    @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
