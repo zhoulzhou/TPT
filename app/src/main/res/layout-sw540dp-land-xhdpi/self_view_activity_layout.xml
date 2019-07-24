@@ -32,7 +32,7 @@
         android:layout_marginTop="100dp"
         android:layout_gravity="center_horizontal"/>
         -->
-    <com.example.tire.selfview.BitmapCanvasView
+    <com.example.tire.selfview.XfermodeView
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>
